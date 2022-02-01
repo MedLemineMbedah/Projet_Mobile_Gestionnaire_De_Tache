@@ -6,8 +6,13 @@ class ListTache extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: Center(
+    return Scaffold(
+      appBar: AppBar(
+
+        title:Text('les taches') ,
+        leading: IconButton(icon:Icon(Icons.arrow_back) , onPressed: (){changeScreen(selectedScreen: 'listProject');},),
+        ),
+      body: Center(
         child: Text('ListTache'),
       ),
       

@@ -19,5 +19,8 @@ class Auth{
      await  FirebaseAuth.instance.signOut();
   }
  
+  static String get uid{
+    return FirebaseAuth.instance.currentUser!.uid;
+  }
   
 }

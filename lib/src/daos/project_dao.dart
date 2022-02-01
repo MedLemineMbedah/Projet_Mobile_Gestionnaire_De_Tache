@@ -20,7 +20,7 @@ class ProjectDao{
          await  FirebaseFirestore.instance.collection(UserDao.colName).doc(uid).collection(colName).add(p.asMap());
   }
 
-  Future<List<Project>> getUserProject(String uid ) async {
+  static Future<List<Project>> getUserProject(String uid ) async {
    QuerySnapshot  query =  await  FirebaseFirestore.instance.collection(UserDao.colName).doc(uid).collection(colName).get();
    return query.docs.map(Project.fromQueryDocumentSnapshot).toList();
 
