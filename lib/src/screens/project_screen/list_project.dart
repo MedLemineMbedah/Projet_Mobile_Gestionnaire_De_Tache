@@ -5,6 +5,7 @@ import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/screens/project_screen/project_item_builder.dart';
 
 class ListProject extends StatelessWidget {
+  static const String screenName= 'listProject';
   Function changeScreen;
    ListProject({ Key? key,required this.changeScreen}) : super(key: key);
 

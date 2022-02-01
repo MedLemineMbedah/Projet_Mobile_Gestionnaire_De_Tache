@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projects3/src/models/project.dart';
+import 'package:projects3/src/screens/tache_screen/list_tache.dart';
 
 class ProjectItemBuilder extends StatelessWidget {
   Project project;
@@ -15,7 +16,7 @@ class ProjectItemBuilder extends StatelessWidget {
         ),
         trailing:  Text(project.dateDedut.toString()),
       onTap: (){
-        ontap(project: project,selectedScreen:'listTache');
+        ontap(project: project,selectedScreen:ListTache.screenName);
       },
     );
   }

@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/tache.dart';
+import 'package:projects3/src/screens/project_screen/create_project_screen.dart';
 import 'package:projects3/src/screens/project_screen/list_project.dart';
 import 'package:projects3/src/screens/tache_screen/list_tache.dart';
 
@@ -34,6 +35,13 @@ class _AdminControllerState extends State<AdminController> {
        screen = selectedScreen;
      });
    }
+
+   void changeScreen(String s){
+     setState(() {
+       
+       screen = s;
+     });
+   }
     void selectProject(Project p){
       setState(() {
         selectedProject = p;
@@ -42,9 +50,10 @@ class _AdminControllerState extends State<AdminController> {
 
      switch (screen) {
        
-         case 'listProject' : return ListProject(changeScreen:onTapProject );
+         case ListProject.screenName : return ListProject(changeScreen:onTapProject );
     
-    case'listTache' : return ListTache(changeScreen: onTapTache ,);
+    case ListTache.screenName : return ListTache(changeScreen: onTapTache ,);
+    case CreateProjectScreen.screenName : return CreateProjectScreen(changeScreen: changeScreen ,);
    
       default: return ListProject(changeScreen:onTapProject);
     }
