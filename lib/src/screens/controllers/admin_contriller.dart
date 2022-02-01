@@ -3,8 +3,8 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/tache.dart';
-import 'package:projects3/src/screens/controllers/list_project.dart';
-import 'package:projects3/src/screens/controllers/list_tache.dart';
+import 'package:projects3/src/screens/project_screen/list_project.dart';
+import 'package:projects3/src/screens/tache_screen/list_tache.dart';
 
 class AdminController extends StatefulWidget {
   const AdminController({ Key? key }) : super(key: key);
