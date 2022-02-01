@@ -18,6 +18,6 @@ class Auth{
    static Future<void> loguOut(UserMadel user,String pass) async {
      await  FirebaseAuth.instance.signOut();
   }
-
+ 
   
 }
