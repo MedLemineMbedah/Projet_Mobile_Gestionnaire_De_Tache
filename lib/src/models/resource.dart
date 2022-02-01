@@ -1,0 +1,42 @@
+
+import 'package:cloud_firestore/cloud_firestore.dart';
+class Resource{
+  String id;
+  String nom;
+  String  address;
+  String  contact;
+  bool estOcupper;
+  
+
+  Resource({required this.nom,required this.address,required this.contact, this.id = '',this.estOcupper = false});
+
+  Map<String ,dynamic> asMap(){
+    return {
+    'nom': nom,
+    "address" : address,
+    'contact' : contact,
+    'estOcupper' : estOcupper
+    };
+  }
+
+   static Resource fromMap(Map<String,dynamic > data , String idP){
+    return  Resource(
+      id : idP,
+      address:  data['address'] ?? '' ,
+       contact: data['contact']  ?? '',
+       nom: data['nom'] ?? '' ,
+       estOcupper : data['estOcupper'] ?? false
+        );
+  }
+
+   static Resource fromDocumentSnapshot(DocumentSnapshot doc){
+    return fromMap(doc.data() as Map<String ,dynamic>, doc.id);
+  }
+  
+
+   static Resource fromQueryDocumentSnapshot(QueryDocumentSnapshot doc){
+    return fromMap(doc.data() as Map<String ,dynamic>, doc.id);
+  }
+
+
+}
