@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:projects3/src/daos/user_dao.dart';
 import 'package:projects3/src/models/user.dart';
 import 'package:projects3/src/screens/signIn.dart';
@@ -69,13 +68,13 @@ class MyApp extends StatelessWidget {
              return Consumer<User?>(
                builder: (context,user,_){
                  if(user == null){
-                    Signin();
+                    LoginScreen();
                  }
                  return  FutureProvider<UserMadel?>(
                    create :(context) => UserDao.getUser(user!.uid),
                    initialData: null,
                    builder: (context,_) {
-                      return UserController();
+                      return LoginScreen();
                    }
                
                );

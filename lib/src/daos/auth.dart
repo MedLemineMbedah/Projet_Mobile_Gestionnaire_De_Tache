@@ -5,8 +5,8 @@ import 'package:projects3/src/models/user.dart';
 
 class Auth{
 
-  static Future<void> signIn(UserMadel user,String pass) async {
-    await  FirebaseAuth.instance.signInWithEmailAndPassword(email: user.email, password: pass);
+  static Future<void> signIn(String email,String pass) async {
+    await  FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: pass);
   }
 
   static Future<void> loguIn(UserMadel user,String pass ) async {
