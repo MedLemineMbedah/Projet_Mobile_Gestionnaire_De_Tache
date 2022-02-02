@@ -1,4 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 class Project{
   String id;
   String titre;
@@ -25,6 +26,8 @@ class Project{
         );
   }
 
+  
+
   static Project  fromDocumentSnapshot(DocumentSnapshot doc){
     return fromMap(doc.data() as Map<String,dynamic> , doc.id);
   }
@@ -32,6 +35,7 @@ class Project{
    static Project  fromQueryDocumentSnapshot(QueryDocumentSnapshot doc){
     return fromMap(doc.data() as Map<String,dynamic> , doc.id);
   }
+
 
   
 

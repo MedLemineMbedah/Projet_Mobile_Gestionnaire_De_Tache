@@ -16,7 +16,7 @@ class ProjectItemBuilder extends StatelessWidget {
         ),
         trailing:  Text(project.dateDedut.toString()),
       onTap: (){
-        ontap(project: project,selectedScreen:ListTache.screenName);
+        ontap(project: project.id,selectedScreen:ListTache.screenName);
       },
     );
   }

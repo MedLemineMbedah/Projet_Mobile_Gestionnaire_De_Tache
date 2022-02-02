@@ -2,9 +2,9 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:projects3/src/models/user.dart';
 
 class UserDao{
-  static String colName = 'user';
+  static String colName = 'users';
 
-    static CollectionReference _usersCollection =FirebaseFirestore.instance.collection('user');
+    static CollectionReference _usersCollection =FirebaseFirestore.instance.collection(colName);
       static Future<UserMadel> getUser(String id) async {
 
       DocumentSnapshot doc =await  _usersCollection.doc(id).get();

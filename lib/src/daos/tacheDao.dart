@@ -19,7 +19,7 @@ class TacheDao{
             .add(t.asMap());
   }
 
-  Future<List<Tache>> getUserTache(String uid , idP) async {
+  static Future<List<Tache>> getUserTache(String uid ,idP) async {
    QuerySnapshot  query =  await FirebaseFirestore.instance.collection(UserDao.colName).
          doc(uid).collection(ProjectDao.colName).
          doc(idP).collection(colName).get();
