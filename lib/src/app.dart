@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
              return Consumer<User?>(
                builder: (context,user,_){
                  if(user == null){
-                    LoginScreen();
+                   return  LoginScreen();
                  }
                  return  FutureProvider<UserMadel?>(
                    create :(context) => UserDao.getUser(user!.uid),
