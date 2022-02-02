@@ -71,10 +71,10 @@ class MyApp extends StatelessWidget {
                    return  LoginScreen();
                  }
                  return  FutureProvider<UserMadel?>(
-                   create :(context) => UserDao.getUser(user!.uid),
+                   create :(context) => UserDao.getUser(user.uid),
                    initialData: null,
                    builder: (context,_) {
-                      return LoginScreen();
+                      return UserController();
                    }
                
                );

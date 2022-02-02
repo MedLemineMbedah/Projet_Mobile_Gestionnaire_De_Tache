@@ -12,22 +12,21 @@ class UserController extends StatelessWidget {
     return Consumer<UserMadel?>(
       
       builder: (context, user,_) {
-        // if(user == null){
-        //   return Container(
-        //     color: Colors.white,
-        //     child: Center(
-        //       child: CircularProgressIndicator(),
-        //     ),
-        //   );
+        if(user == null){
+          return Container(
+            color: Colors.white,
+            child: Center(
+              child: CircularProgressIndicator(),
+            ),
+          );
 
-        // }
-        // else if( user.isAdmin){
-        //   return AdminController();
-        // }
-        // else{
-        //   return ResourceController();
-        // }
-        return AdminController();
+        }
+        else if( user.isAdmin){
+          return AdminController();
+        }
+        else{
+          return ResourceController();
+        }
         
       }
     );
