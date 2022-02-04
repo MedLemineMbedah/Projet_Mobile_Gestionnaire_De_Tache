@@ -49,6 +49,9 @@ class ListTache extends StatelessWidget {
              return ListView.builder(
             itemCount: snapshot.data!.length,
             itemBuilder: (context,index)=> tachetemBuilder(ontap: changeScreen,tache: snapshot.data![index],));
+          
+          
+          
           }
 
           else{
@@ -62,7 +65,7 @@ class ListTache extends StatelessWidget {
         elevation: 8.0,   
         child: Icon(Icons.add),   
         onPressed: (){   
-          { changeScreen(selectedScreen:AddTache.screenName);}
+          { changeScreen(selectedScreen:AddTache.screenName );project;}
         }   
     ),   
     );

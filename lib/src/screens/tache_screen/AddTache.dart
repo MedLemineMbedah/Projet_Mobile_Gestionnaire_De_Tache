@@ -1,14 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:projects3/src/daos/tacheDao.dart';
 import 'package:projects3/src/daos/user_dao.dart';
+import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/tache.dart';
 import 'package:projects3/src/models/user.dart';
 import 'package:projects3/src/screens/controllers/admin_contriller.dart';
 class AddTache extends StatelessWidget {
   static const String screenName = 'AddTache';
+  
   Function changeScreen;
    AddTache({ Key? key , required this.changeScreen}) : super(key: key);
 
-
+ 
   @override
   Widget build(BuildContext context) {
     const appTitle = 'Form Validation Demo';
@@ -47,6 +50,7 @@ class MyCustomFormState extends State<MyCustomForm> {
 late String titre;
 late int duree;
 late bool disponible;
+
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
@@ -81,7 +85,8 @@ late bool disponible;
               if (value == null || value.isEmpty) {
                 return 'Please enter some text';
               }
-              duree=value as int;
+              
+              duree=int.parse(value);
             },
             decoration: const InputDecoration(
               
@@ -89,6 +94,7 @@ late bool disponible;
     
     labelText:'duree',
     hintText: 'Entrer la duree',
+    
               )
           ),
   
@@ -103,9 +109,11 @@ late bool disponible;
                   Tache t = Tache(duree: duree, titre: titre);
                   // UserDao.saveUser1(t);
                   
-                  //   print(u.prenom);
-                  //   print(u.nom);
-                  //   print(u.email);
+                     print(t.duree);
+                     print(t.titre);
+                     print(t.occupation);
+                  //  TacheDao.SaveTache( t);
+                  
                   
                   // ScaffoldMessenger.of(context).showSnackBar(
                   //   const SnackBar(content: Text('Processing Data')),
