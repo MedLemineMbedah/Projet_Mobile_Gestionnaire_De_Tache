@@ -12,16 +12,19 @@ class Project{
   Map<String ,dynamic> asMap(){
     return {
     'titre': titre,
-    "dateDedut" : dateDedut,
-    'dateFin' : dateFin
+    "dateDedut" : dateDedut.toString(),
+    'dateFin' : dateFin.toString(),
     };
   }
 
   static Project fromMap(Map<String,dynamic > data , String idP){
+   // DateTime parseDate = new DateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS'Z'").parse(data['dateDedut'] );
     return  Project(
       id : idP,
-      dateDedut:  data['dateDedut'] !=null ? DateTime.parse(data['dateDedut'] )  :  DateTime.now() ,
-       dateFin: data['dateFin'] !=null ? DateTime.parse(data['dateFin'] )  :  DateTime.now(),
+    //  print("");
+      dateDedut:  data['dateDedut'] !=null ? DateTime.parse(data['dateDedut'].toString())  :  DateTime.now() ,
+      
+       dateFin: data['dateFin'] !=null ? DateTime.parse(data['dateFin'].toString() )  :  DateTime.now(),
         titre: data['titre'] ?? ''
         );
   }

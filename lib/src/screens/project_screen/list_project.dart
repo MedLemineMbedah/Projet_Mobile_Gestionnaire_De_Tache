@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:projects3/src/daos/auth.dart';
 import 'package:projects3/src/daos/project_dao.dart';
 import 'package:projects3/src/models/project.dart';
+import 'package:projects3/src/screens/project_screen/create_project_screen.dart';
 import 'package:projects3/src/screens/project_screen/project_item_builder.dart';
 
 class ListProject extends StatelessWidget {
@@ -46,7 +47,7 @@ class ListProject extends StatelessWidget {
         elevation: 8.0,   
         child: Icon(Icons.add),   
         onPressed: (){   
-         Auth.loguOut();  
+           { changeScreen(selectedScreen:CreateProjectScreen.screenName);}
         }   
     ),
        
