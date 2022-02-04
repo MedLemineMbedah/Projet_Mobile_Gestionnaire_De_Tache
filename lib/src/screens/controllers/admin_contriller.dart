@@ -3,9 +3,13 @@ import 'dart:ui';
 import 'package:flutter/material.dart';
 import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/tache.dart';
+
+import 'package:projects3/src/models/resource.dart';
 import 'package:projects3/src/screens/project_screen/create_project_screen.dart';
 import 'package:projects3/src/screens/project_screen/list_project.dart';
+import 'package:projects3/src/screens/ressource_screen/ressource_item_builder.dart';
 import 'package:projects3/src/screens/tache_screen/list_tache.dart';
+import 'package:projects3/src/screens/ressource_screen/liste_of_ressource_dis.dart';
 
 class AdminController extends StatefulWidget {
   const AdminController({ Key? key }) : super(key: key);
@@ -17,7 +21,7 @@ class AdminController extends StatefulWidget {
 class _AdminControllerState extends State<AdminController> {
   Project ?selectedProject = null;
   Tache ?selectedTache = null;
-
+  Resource ?selectedR=null;
 
 
   String screen = 'listProject';
@@ -32,6 +36,12 @@ class _AdminControllerState extends State<AdminController> {
      void onTapTache({tache,selectedScreen}){
      setState(() {
        if(tache != null) selectedTache = tache;
+       screen = selectedScreen;
+     });
+   }
+    void onTapProjectonTapRessource({resource,selectedScreen}){
+     setState(() {
+       if(resource != null) selectedR = resource;
        screen = selectedScreen;
      });
    }
@@ -52,8 +62,9 @@ class _AdminControllerState extends State<AdminController> {
        
          case ListProject.screenName : return ListProject(changeScreen:onTapProject );
     
-    case ListTache.screenName : return ListTache(changeScreen: onTapTache ,);
+    case ListTache.screenName : return ListTache(changeScreen: onTapTache ,project: selectedProject!,);
     case CreateProjectScreen.screenName : return CreateProjectScreen(changeScreen: changeScreen ,);
+   case ListRessource.screenName : return ListRessource(changeScreen: onTapProjectonTapRessource ,);
    
       default: return ListProject(changeScreen:onTapProject);
     }

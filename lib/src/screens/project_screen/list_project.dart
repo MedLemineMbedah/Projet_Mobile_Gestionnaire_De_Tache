@@ -30,6 +30,13 @@ class ListProject extends StatelessWidget {
             
         }
       ),
+       floatingActionButton: FloatingActionButton(   
+        elevation: 8.0,   
+        child: Icon(Icons.logout),   
+        onPressed: (){   
+         Auth.loguOut();  
+        }   
+    ),   
     );
   }
 }

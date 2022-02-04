@@ -8,13 +8,18 @@ class Resource{
   bool estOcupper;
   
 
-  Resource({required this.nom,required this.address,required this.contact, this.id = '',this.estOcupper = false});
+  Resource({required this.nom, this.address='', this.contact='', this.id = '',this.estOcupper = false});
 
   Map<String ,dynamic> asMap(){
     return {
     'nom': nom,
     "address" : address,
     'contact' : contact,
+    'estOcupper' : estOcupper
+    };
+  }
+  Map<String ,dynamic> asMap_estOcupper(){
+    return {
     'estOcupper' : estOcupper
     };
   }
@@ -29,6 +34,13 @@ class Resource{
         );
   }
 
+  static Resource fromMapR(Map<String,dynamic > data , String idP){
+    return  Resource(
+
+       nom: data['nom'] ?? '' ,
+        );
+  }
+
    static Resource fromDocumentSnapshot(DocumentSnapshot doc){
     return fromMap(doc.data() as Map<String ,dynamic>, doc.id);
   }
@@ -38,5 +50,9 @@ class Resource{
     return fromMap(doc.data() as Map<String ,dynamic>, doc.id);
   }
 
+
+   static Resource fromQueryDocumentSnapshotR(QueryDocumentSnapshot doc){
+    return fromMapR(doc.data() as Map<String ,dynamic>, doc.id);
+  }
 
 }

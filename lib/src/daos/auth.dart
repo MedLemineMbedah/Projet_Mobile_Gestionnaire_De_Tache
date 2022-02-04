@@ -15,7 +15,7 @@ class Auth{
 
   }
 
-   static Future<void> loguOut(UserMadel user,String pass) async {
+   static Future<void> loguOut() async {
      await  FirebaseAuth.instance.signOut();
   }
  

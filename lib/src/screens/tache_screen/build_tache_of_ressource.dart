@@ -8,12 +8,12 @@ import 'package:projects3/src/daos/tacheDao.dart';
 import 'package:projects3/src/daos/auth.dart';
 //import 'package:projects3/src/models/project.dart';
 
-class ListTache extends StatelessWidget {
+class ListTache_of_project extends StatelessWidget {
   static const String screenName = 'listTache';
-  Project project;
-  Function changeScreen;
-
-  ListTache({ Key? key ,required this.changeScreen,required this.project}) : super(key: key);
+//  Project project;
+ // Function changeScreen;
+  ListTache_of_project({ Key? key }) : super(key: key);
+ // Project project;
 
   // @override
   // Widget build(BuildContext context) {
@@ -34,15 +34,28 @@ class ListTache extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('les Taches 11'),),
+      appBar: AppBar(title: Text('les taches'),),
       body: FutureBuilder<List<Tache>>(
-        future: TacheDao.getUserTacheNonAffecter(Auth.uid,project.id),
+        future: TacheDao.getResourceTache(Auth.uid),
         builder: (context, snapshot) {
           if(snapshot.hasData){
-            if(snapshot.data!.isEmpty) return Center( child: Text('pas de project '),);
+            if(snapshot.data!.isEmpty) return Center( child: Text('pas de tache !!! '),);
              return ListView.builder(
             itemCount: snapshot.data!.length,
-            itemBuilder: (context,index)=> tachetemBuilder(ontap: changeScreen,tache: snapshot.data![index],));
+            itemBuilder: (context,index)=> ListTile(
+                        title: Text(snapshot.data![index].titre)  ,
+                        subtitle: Text(
+                          "duree: ${snapshot.data![index].duree.toString()}"
+                          ),
+                        onTap: (){
+                        //  ontap(project: tache,selectedScreen:ListTache.screenName);
+                        },
+                      ));
+
+
+
+          
+            //tachetemBuilder(ontap: changeScreen,tache: snapshot.data![index],));
           }
 
           else{
@@ -52,13 +65,13 @@ class ListTache extends StatelessWidget {
             
         }
       ),
-        floatingActionButton: FloatingActionButton(   
+       floatingActionButton: FloatingActionButton(   
         elevation: 8.0,   
         child: Icon(Icons.logout),   
         onPressed: (){   
          Auth.loguOut();  
         }   
-    ),   
+    ),  
     );
   }
 }
