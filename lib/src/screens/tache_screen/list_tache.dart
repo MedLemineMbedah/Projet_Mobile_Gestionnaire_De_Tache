@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/tache.dart';
+import 'package:projects3/src/screens/project_screen/list_project.dart';
+import 'package:projects3/src/screens/tache_screen/AddTache.dart';
 import 'package:projects3/src/screens/tache_screen/tache_item_builder.dart';
 import 'package:projects3/src/daos/tacheDao.dart';
 import 'package:projects3/src/daos/auth.dart';
@@ -34,7 +36,11 @@ class ListTache extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('les Taches 11'),),
+      appBar: AppBar(title: Text('les Taches 11'),  actions: [
+          IconButton(onPressed: ()=> Auth.loguOut(), icon: Icon(Icons.logout))
+        ],
+     // leading: IconButton(onPressed: changeScreen(selectedScreen:ListProject.screenName), icon: Icon(Icons.arrow_back)),
+      ),
       body: FutureBuilder<List<Tache>>(
         future: TacheDao.getUserTacheNonAffecter(Auth.uid,project.id),
         builder: (context, snapshot) {
@@ -54,9 +60,9 @@ class ListTache extends StatelessWidget {
       ),
         floatingActionButton: FloatingActionButton(   
         elevation: 8.0,   
-        child: Icon(Icons.logout),   
+        child: Icon(Icons.add),   
         onPressed: (){   
-         Auth.loguOut();  
+          { changeScreen(selectedScreen:AddTache.screenName);}
         }   
     ),   
     );

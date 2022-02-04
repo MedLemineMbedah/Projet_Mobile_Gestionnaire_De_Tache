@@ -33,6 +33,7 @@ class MyApp extends StatelessWidget {
               // returns to the app after it has been killed while running in the
               // background.
               restorationScopeId: 'app',
+              debugShowCheckedModeBanner :false,
 
               // Provide the generated AppLocalizations to the MaterialApp. This
               // allows descendant Widgets to display the correct translations
@@ -64,8 +65,23 @@ class MyApp extends StatelessWidget {
 
               // Define a function to handle named routes in order to support
               // Flutter web url navigation and deep linking.
-           builder: (context,_){
-             return Consumer<User?>(
+           home: MainController()
+      
+
+
+    );
+
+    });
+     
+      }
+}
+
+class MainController extends StatelessWidget {
+  const MainController({ Key? key }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return  Consumer<User?>(
                builder: (context,user,_){
                  if(user == null){
                    return  LoginScreen();
@@ -81,12 +97,5 @@ class MyApp extends StatelessWidget {
            },
             
             );
-      }
-
-
-    );
-
-    });
-     
-      }
+  }
 }

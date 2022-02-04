@@ -17,7 +17,7 @@ class tachetemBuilder extends StatelessWidget {
     return ListTile(
       title: Text(tache.titre)  ,
       subtitle: Text(
-        "duree1: ${tache.duree.toString()}"
+        "duree: ${tache.duree.toString()}"
         ),
         
       onTap: (){  

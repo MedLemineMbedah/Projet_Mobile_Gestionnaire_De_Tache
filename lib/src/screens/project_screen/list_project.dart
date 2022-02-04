@@ -12,7 +12,12 @@ class ListProject extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('les Projet'),),
+      appBar: AppBar(title: Text('les Projet'),
+        actions: [
+          IconButton(onPressed: ()=> Auth.loguOut(), icon: Icon(Icons.logout))
+        ],
+      ),
+      
       body: FutureBuilder<List<Project>>(
         future: ProjectDao.getUserProject(Auth.uid),
         builder: (context, snapshot) {
@@ -30,13 +35,21 @@ class ListProject extends StatelessWidget {
             
         }
       ),
+
+      
+
+
+
+
+
        floatingActionButton: FloatingActionButton(   
         elevation: 8.0,   
-        child: Icon(Icons.logout),   
+        child: Icon(Icons.add),   
         onPressed: (){   
          Auth.loguOut();  
         }   
-    ),   
+    ),
+       
     );
   }
 }

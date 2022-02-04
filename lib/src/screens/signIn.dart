@@ -7,20 +7,24 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);
-
+ 
   @override
   _LoginScreenState createState() => _LoginScreenState();
 }
 
 class _LoginScreenState extends State<LoginScreen> {
   var key = GlobalKey();
-   TextEditingController _email = TextEditingController(text: ''), _password = TextEditingController(text: '');
+   TextEditingController _email =  TextEditingController(text: 'a@b.com'), _password = TextEditingController(text: '12345678');
 
  // final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(  
+    return  MaterialApp(
+      
+      debugShowCheckedModeBanner :false,
+      title: "appTitle",
+      home:Scaffold(  
 
       appBar: AppBar(title: Text('Login'),),
       body: Form(
@@ -60,6 +64,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ])
           ],),
       ),
-    );
+    ));
   }
 }

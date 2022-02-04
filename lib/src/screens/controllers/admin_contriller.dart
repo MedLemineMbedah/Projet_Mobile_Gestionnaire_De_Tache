@@ -5,9 +5,11 @@ import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/tache.dart';
 
 import 'package:projects3/src/models/resource.dart';
+import 'package:projects3/src/screens/UserScreen/AddUser.dart';
 import 'package:projects3/src/screens/project_screen/create_project_screen.dart';
 import 'package:projects3/src/screens/project_screen/list_project.dart';
 import 'package:projects3/src/screens/ressource_screen/ressource_item_builder.dart';
+import 'package:projects3/src/screens/tache_screen/AddTache.dart';
 import 'package:projects3/src/screens/tache_screen/list_tache.dart';
 import 'package:projects3/src/screens/ressource_screen/liste_of_ressource_dis.dart';
 
@@ -24,7 +26,7 @@ class _AdminControllerState extends State<AdminController> {
   Resource ?selectedR=null;
 
 
-  String screen = 'listProject';
+  String screen = ListProject.screenName;
   @override
   Widget build(BuildContext context) {
    void onTapProject({project,selectedScreen}){
@@ -64,7 +66,10 @@ class _AdminControllerState extends State<AdminController> {
     
     case ListTache.screenName : return ListTache(changeScreen: onTapTache ,project: selectedProject!,);
     case CreateProjectScreen.screenName : return CreateProjectScreen(changeScreen: changeScreen ,);
-   case ListRessource.screenName : return ListRessource(changeScreen: onTapProjectonTapRessource ,);
+    case AddUser.screenName : return AddUser(changeScreen: changeScreen ,);
+   case AddTache.screenName : return AddTache(changeScreen: changeScreen ,);
+   
+   case ListRessource.screenName : return ListRessource(changeScreen: onTapProjectonTapRessource ,tache: selectedTache!,);
    
       default: return ListProject(changeScreen:onTapProject);
     }

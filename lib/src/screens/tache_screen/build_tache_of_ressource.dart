@@ -34,7 +34,9 @@ class ListTache_of_project extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('les taches'),),
+      appBar: AppBar(title: Text('votre taches'), actions: [
+          IconButton(onPressed: ()=> Auth.loguOut(), icon: Icon(Icons.logout))
+        ],),
       body: FutureBuilder<List<Tache>>(
         future: TacheDao.getResourceTache(Auth.uid),
         builder: (context, snapshot) {
@@ -65,13 +67,13 @@ class ListTache_of_project extends StatelessWidget {
             
         }
       ),
-       floatingActionButton: FloatingActionButton(   
-        elevation: 8.0,   
-        child: Icon(Icons.logout),   
-        onPressed: (){   
-         Auth.loguOut();  
-        }   
-    ),  
+    //    floatingActionButton: FloatingActionButton(   
+    //     elevation: 8.0,   
+    //     child: Icon(Icons.logout),   
+    //     onPressed: (){   
+    //      Auth.loguOut();  
+    //     }   
+    // ),  
     );
   }
 }
