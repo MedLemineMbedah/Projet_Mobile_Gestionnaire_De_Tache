@@ -14,6 +14,11 @@ class ProjectDao{
       DocumentSnapshot doc =await  FirebaseFirestore.instance.collection(UserDao.colName).doc(uid).collection(colName).doc(id).get();
       return Project.fromDocumentSnapshot(doc);
   }
+    static Future<void> deleteP(String id,String uid) async {
+
+      await  FirebaseFirestore.instance.collection(UserDao.colName).doc(uid).collection(colName).doc(id).delete();
+      
+  }
 
   // add new project
        static Future<void > SaveProject(String uid,Project p) async {

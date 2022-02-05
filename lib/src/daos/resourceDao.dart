@@ -12,6 +12,10 @@ class ResourceDao{
       DocumentSnapshot doc =await  _usersCollection.doc(id).get();
       return Resource.fromDocumentSnapshot(doc);
   }
+      static Future<void> deleteRe(String id) async {
+      await  _usersCollection.doc(id).delete();
+      
+  }
   static Future<List<Resource>> getAllResources() async {
       QuerySnapshot doc =await  _usersCollection.get();
       return doc.docs.map(Resource.fromQueryDocumentSnapshot).toList();

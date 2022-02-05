@@ -10,6 +10,7 @@ import 'package:projects3/src/daos/auth.dart';
 
 class ListTache_of_project extends StatelessWidget {
   static const String screenName = 'listTache';
+  
 //  Project project;
  // Function changeScreen;
   ListTache_of_project({ Key? key }) : super(key: key);
@@ -40,11 +41,59 @@ class ListTache_of_project extends StatelessWidget {
       body: FutureBuilder<List<Tache>>(
         future: TacheDao.getResourceTache(Auth.uid),
         builder: (context, snapshot) {
+          
           if(snapshot.hasData){
             if(snapshot.data!.isEmpty) return Center( child: Text('pas de tache !!! '),);
-             return ListView.builder(
+
+
+
+
+             return
+             
+              ListView.builder(
             itemCount: snapshot.data!.length,
-            itemBuilder: (context,index)=> ListTile(
+            itemBuilder: (context,index)=> 
+            
+            Dismissible(key:ObjectKey(snapshot.data![index].id), 
+            
+            background: Container(color: Colors.red),
+                    onDismissed: (direction) {
+                     // documentSnapshot.data().remove(index);
+                     print(snapshot.data![index].titre);
+                     //ProjectDao.deleteP(project.id, Auth.uid);
+                     
+                     
+                    },
+
+                    confirmDismiss: (DismissDirection direction) async {
+  return await showDialog(
+    context: context,
+    builder: (BuildContext context) {
+      return AlertDialog(
+        title: const Text("Confirm"),
+        content: const Text("Are you sure you wish to delete this item?"),
+        actions: <Widget>[
+          FlatButton(
+            onPressed: () => Navigator.of(context).pop(true),
+            
+            child: const Text("DELETE")
+          ),
+          FlatButton(
+            onPressed: () => Navigator.of(context).pop(false),
+            child: const Text("CANCEL"),
+          ),
+        ],
+      );
+    },
+  );
+},
+
+                    
+
+                    direction: DismissDirection.endToStart,
+            
+            child: 
+            ListTile(
                         title: Text(snapshot.data![index].titre)  ,
                         subtitle: Text(
                           "duree: ${snapshot.data![index].duree.toString()}"
@@ -52,7 +101,9 @@ class ListTache_of_project extends StatelessWidget {
                         onTap: (){
                         //  ontap(project: tache,selectedScreen:ListTache.screenName);
                         },
-                      ));
+                      )
+            )
+                      );
 
 
 
