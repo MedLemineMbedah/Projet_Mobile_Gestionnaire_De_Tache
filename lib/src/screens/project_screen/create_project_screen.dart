@@ -1,5 +1,7 @@
 import 'package:datetime_picker_formfield/datetime_picker_formfield.dart';
 
+import 'package:projects3/src/screens/project_screen/list_project.dart';
+
 import 'package:intl/intl.dart';
 
 import 'package:flutter/material.dart';
@@ -14,7 +16,6 @@ import 'package:projects3/src/screens/tache_screen/AddTache.dart';
 class CreateProjectScreen extends StatefulWidget {
   static const String screenName = 'createProject';
   Function changeScreen;
-
   CreateProjectScreen({Key? key, required this.changeScreen}) : super(key: key);
 
   @override
@@ -22,7 +23,7 @@ class CreateProjectScreen extends StatefulWidget {
 }
 
 class _CreateProjectScreenState extends State<CreateProjectScreen> {
-   TextEditingController _title =  TextEditingController(text: ' ');
+  TextEditingController _title = TextEditingController(text: ' ');
 
   final _formKey = GlobalKey<FormState>();
 
@@ -30,11 +31,12 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
   DateTime _dat2 = DateTime.now();
   //String _title = '';
   String btnText = 'Add project';
-  String titleText = 'Add Project';
+  // String titleText = 'Add Project';
 
   TextEditingController _dat1Controller = TextEditingController();
   TextEditingController _dat2Controller = TextEditingController();
-  final DateFormat _dateFormatter = DateFormat('yyyy-MM-dd hh:mm');//DateFormat();
+  final DateFormat _dateFormatter =
+      DateFormat('yyyy-MM-dd hh:mm'); //DateFormat();
 
   @override
   void initState() {
@@ -84,18 +86,16 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        debugShowCheckedModeBanner :false,
-
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         appBar: AppBar(
           title: Text('create Project'),
           // to return to  ListProject screen
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
-            onPressed: () {
-              AdminController();
-            },
+            onPressed: () => Navigator.of(context).pop(),
           ),
+
           backgroundColor: Colors.blue,
         ),
         body: GestureDetector(
@@ -113,16 +113,16 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                     SizedBox(
                       height: 20,
                     ),
-                    Center(
-                      child: Text(
-                        titleText,
-                        style: TextStyle(
-                          color: Colors.lightBlueAccent.shade200,
-                          fontSize: 20.0,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
-                    ),
+                    // Center(
+                    //   child: Text(
+                    //     titleText,
+                    //     style: TextStyle(
+                    //       color: Colors.lightBlueAccent.shade200,
+                    //       fontSize: 20.0,
+                    //       fontWeight: FontWeight.bold,
+                    //     ),
+                    //   ),
+                    // ),
                     SizedBox(
                       height: 20.0,
                     ),
@@ -130,22 +130,20 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                       key: _formKey,
                       child: Column(
                         children: [
-                          Padding(    padding: const EdgeInsets.all(8.0),
+                          Padding(
+                            padding: const EdgeInsets.all(8.0),
+                            child: TextField(
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Nom',
+                                hintText: 'Entrer votre nom',
 
-                                    child: TextField(
-                                      keyboardType: TextInputType.text,
-                                      decoration: InputDecoration(  
-                                         border: OutlineInputBorder(),
-                                         labelText:'Nom',
-                                          hintText: 'Entrer votre nom',
-   
-                                       // hintText: 'Nom'
-                                      ),
-                                      controller: _title,
-                                      
-                                      
-                                    ),
-                                  ),
+                                // hintText: 'Nom'
+                              ),
+                              controller: _title,
+                            ),
+                          ),
 
                           // date debut
                           Padding(
@@ -213,7 +211,20 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                                         dateFin: DateTime.parse(
                                             _dat1Controller.text),
                                         titre: _title.text));
-        
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: Text('Result'),
+                                    content: Text('Ajout avec succes'),
+                                    actions: [
+                                      ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text('Ok'))
+                                    ],
+                                  ),
+                                );
                               },
                               child: Text(
                                 btnText.toUpperCase(),
