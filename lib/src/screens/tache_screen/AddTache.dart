@@ -10,9 +10,9 @@ import 'package:projects3/src/screens/tache_screen/list_tache.dart';
 
 class AddTache extends StatelessWidget {
   static const String screenName = 'AddTache';
-
+  Project project;
   Function changeScreen;
-  AddTache({Key? key, required this.changeScreen}) : super(key: key);
+  AddTache({Key? key, required this.changeScreen,required this.project}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +23,13 @@ class AddTache extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text(appTitle),
-          leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                changeScreen(selectedScreen: ListTache.screenName);
-              }),
+          leading: IconButton(onPressed: ()=> changeScreen(selectedScreen:ListTache.screenName),icon: Icon(Icons.arrow_back)),
+     
+          // leading: IconButton(
+          //     icon: Icon(Icons.arrow_back),
+          //     onPressed: () {
+          //       changeScreen(selectedScreen: ListTache.screenName);
+          //     }),
         ),
         body: const MyCustomForm(),
       ),
@@ -127,7 +129,7 @@ class MyCustomFormState extends State<MyCustomForm> {
                 if (_formKey.currentState!.validate()) {
                   Tache t = Tache(duree: duree, titre: titre);
 
-                  TacheDao.SaveTache(Auth.uid, TacheDao.idP, t);
+                // TacheDao.SaveTache(Auth.uid, , t);
 
                   showDialog(
                     context: context,

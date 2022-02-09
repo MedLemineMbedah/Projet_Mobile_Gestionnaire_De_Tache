@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:projects3/src/daos/auth.dart';
 import 'package:projects3/src/daos/project_dao.dart';
 import 'package:projects3/src/daos/user_dao.dart';
 import 'package:projects3/src/models/project.dart';
@@ -96,6 +97,6 @@ class TacheDao {
   }
 
   static String get idP {
-    return FirebaseFirestore.instance.collection(UserDao.colName).doc().collection(ProjectDao.colName).id;
+    return FirebaseFirestore.instance.collection(UserDao.colName).doc(Auth.uid).collection(ProjectDao.colName).id;
   }
 }

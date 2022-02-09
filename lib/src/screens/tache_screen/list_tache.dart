@@ -3,6 +3,8 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/tache.dart';
+import 'package:projects3/src/screens/controllers/admin_contriller.dart';
+import 'package:projects3/src/screens/controllers/user_controller.dart';
 import 'package:projects3/src/screens/project_screen/list_project.dart';
 import 'package:projects3/src/screens/tache_screen/AddTache.dart';
 import 'package:projects3/src/screens/tache_screen/tache_item_builder.dart';
@@ -36,8 +38,11 @@ class ListTache extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('les Taches 11'),  actions: [
-          IconButton(onPressed: ()=> Auth.loguOut(), icon: Icon(Icons.logout))
+      appBar: AppBar(title: Text('les Taches 11'), 
+       leading: IconButton(onPressed: ()=> changeScreen(selectedScreen:ListProject.screenName),icon: Icon(Icons.arrow_back)),
+       actions: [
+          IconButton(onPressed: ()=> Auth.loguOut(), icon: Icon(Icons.logout)),
+         // IconButton(onPressed: ()=> Navigator.pop(context), icon: Icon(Icons.arrow_back)),
         ],
      // leading: IconButton(onPressed: changeScreen(selectedScreen:ListProject.screenName), icon: Icon(Icons.arrow_back)),
       ),
@@ -65,7 +70,9 @@ class ListTache extends StatelessWidget {
         elevation: 8.0,   
         child: Icon(Icons.add),   
         onPressed: (){   
-          { changeScreen(selectedScreen:AddTache.screenName );project;}
+           
+          
+          { changeScreen(project: project,selectedScreen:AddTache.screenName );project.id;}
         }   
     ),   
     );

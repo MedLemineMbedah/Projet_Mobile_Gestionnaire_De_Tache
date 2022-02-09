@@ -7,6 +7,7 @@ import 'package:projects3/src/models/tache.dart';
 import 'package:projects3/src/screens/UserScreen/AddUser.dart';
 import 'package:projects3/src/screens/ressource_screen/ressource_item_builder.dart';
 import 'package:projects3/src/screens/signIn.dart';
+import 'package:projects3/src/screens/tache_screen/list_tache.dart';
 
 class ListRessource extends StatelessWidget {
   static const String screenName= 'listRessource';
@@ -18,7 +19,9 @@ class ListRessource extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('les Ressources disponibles'), actions: [
+      appBar: AppBar(title: Text('les Ressources disponibles'), 
+        leading: IconButton(onPressed: ()=> changeScreen(selectedScreen:ListTache.screenName),icon: Icon(Icons.arrow_back)),
+     actions: [
           IconButton(onPressed: ()=> Auth.loguOut(), icon: Icon(Icons.logout))
         ],),
       body: FutureBuilder<List<Resource>>(
@@ -35,6 +38,7 @@ class ListRessource extends StatelessWidget {
                                   Tache t = await TacheDao.getUserTache(Auth.uid, tache.id);
                                   TacheDao.SaveTacheOfRe(snapshot.data![index].id,t);
                                   print("Saved");
+                                  
                           //  ontap(project: project,selectedScreen:ListTache.screenName);
                           },
                         ));
