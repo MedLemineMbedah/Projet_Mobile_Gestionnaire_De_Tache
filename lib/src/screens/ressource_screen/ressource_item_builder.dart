@@ -13,22 +13,46 @@ class ressource_item_builder extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return
-
 Dismissible(
-                    key: ObjectKey(resource.id),
-                    background: Container(color: Colors.red),
-                    onDismissed: (direction) {
-                     // documentSnapshot.data().remove(index);
-                     ResourceDao.deleteRe(resource.id);
-                      print(resource.nom);
-                    //  ProjectDao.deleteP(project.id, Auth.uid);
-                     
-                     
-                    },
-                    
+  key: ObjectKey(resource.id),
+    background: Container(
+      alignment: Alignment.centerLeft,
+      padding: EdgeInsets.only(left: 20.0),
+      color: Colors.orangeAccent,
+      child: Icon(Icons.edit, color: Colors.white),
+    ),
+    secondaryBackground: Container(
+      alignment: Alignment.centerRight,
+      padding: EdgeInsets.only(right: 20.0),
+      color: Colors.redAccent,
+      child: Icon(Icons.delete, color: Colors.white),
+    ),
+    child:
+    
+    ListTile(
+      title: Text(resource.nom)  ,
+      onTap: (){
+        
+      //  ontap(project: project,selectedScreen:ListTache.screenName);
+      },
+    ),
 
-                    confirmDismiss: (DismissDirection direction) async {
-  return await showDialog(
+    
+    onDismissed: (direction){
+      if(direction == DismissDirection.startToEnd){
+        print(resource.id);
+        
+      } else if(direction == DismissDirection.endToStart){
+        //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Swipe to right")));
+        print(resource.id);
+        print("supprimer");
+        ResourceDao.deleteRe(resource.id);
+      }
+    },
+
+    confirmDismiss: (direction) async {
+      if(direction==DismissDirection.endToStart){
+ return await showDialog(
     context: context,
     builder: (BuildContext context) {
       return AlertDialog(
@@ -46,26 +70,20 @@ Dismissible(
           ),
         ],
       );
-    },
-  );
+      }     
+ );
+
+
+    }
+
+
+    else{
+      print("modifier");
+    }
+  
+  
 },
-
-                    
-
-                    direction: DismissDirection.endToStart,
-
-
-     child: Card(
-   child:
-    
-    ListTile(
-      title: Text(resource.nom)  ,
-      onTap: (){
-        
-      //  ontap(project: project,selectedScreen:ListTache.screenName);
-      },
-    )
-     )
-    );
+  );
   }
 }
+
