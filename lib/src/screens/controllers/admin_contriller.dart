@@ -8,6 +8,8 @@ import 'package:projects3/src/models/resource.dart';
 import 'package:projects3/src/screens/UserScreen/AddUser.dart';
 import 'package:projects3/src/screens/project_screen/create_project_screen.dart';
 import 'package:projects3/src/screens/project_screen/list_project.dart';
+import 'package:projects3/src/screens/project_screen/Update_project_screen.dart';
+
 import 'package:projects3/src/screens/ressource_screen/ressource_item_builder.dart';
 import 'package:projects3/src/screens/tache_screen/AddTache.dart';
 import 'package:projects3/src/screens/tache_screen/list_tache.dart';
@@ -66,6 +68,10 @@ class _AdminControllerState extends State<AdminController> {
     
     case ListTache.screenName : return ListTache(changeScreen: onTapTache ,project: selectedProject!,);
     case CreateProjectScreen.screenName : return CreateProjectScreen(changeScreen: changeScreen ,);
+    
+    
+    case UpdateProjectScreen.screenName : return UpdateProjectScreen(changeScreen: changeScreen ,);
+    
     case AddUser.screenName : return AddUser(changeScreen: changeScreen ,);
    case AddTache.screenName : return AddTache(changeScreen: changeScreen ,project: selectedProject!,);
    

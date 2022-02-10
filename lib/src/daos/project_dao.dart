@@ -3,6 +3,8 @@ import 'package:projects3/src/daos/user_dao.dart';
 import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/user.dart';
 
+
+
 class ProjectDao{
   static String colName = 'projet';
 
@@ -30,6 +32,12 @@ class ProjectDao{
    return query.docs.map(Project.fromQueryDocumentSnapshot).toList();
 
   }
+
+  static Future<void> UpdateProject(String uid, Project project) async{
+     FirebaseFirestore.instance.collection(UserDao.colName).doc(uid).collection(colName).doc(project.id).update(project.asMap());
+  }
+
+ 
 
 
   
