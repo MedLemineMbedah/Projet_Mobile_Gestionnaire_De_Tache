@@ -33,8 +33,8 @@ class ProjectDao{
 
   }
 
-  static Future<void> UpdateProject(String uid, Project project) async{
-     FirebaseFirestore.instance.collection(UserDao.colName).doc(uid).collection(colName).doc(project.id).update(project.asMap());
+  static Future<void> UpdateProject(String uid, String idp,Project project) async{
+     FirebaseFirestore.instance.collection(UserDao.colName).doc(uid).collection(colName).doc(idp).update(project.asMap());
   }
 
  

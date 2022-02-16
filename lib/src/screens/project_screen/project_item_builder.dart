@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:projects3/src/daos/auth.dart';
@@ -73,11 +71,12 @@ class ProjectItemBuilder extends StatelessWidget {
                     ),
                   ],
                 );
-              }
-              );
+              });
         } else {
-          
-       
+          onTap:
+          {
+            ontap(project: project, selectedScreen: updateProjet.screenName);
+          }
         }
       },
     );

@@ -70,7 +70,7 @@ class _AdminControllerState extends State<AdminController> {
     case CreateProjectScreen.screenName : return CreateProjectScreen(changeScreen: changeScreen ,);
     
     
-    case UpdateProjectScreen.screenName : return UpdateProjectScreen(changeScreen: changeScreen ,);
+    case updateProjet.screenName : return updateProjet(changeScreen: changeScreen ,project: selectedProject!,);
     
     case AddUser.screenName : return AddUser(changeScreen: changeScreen ,);
    case AddTache.screenName : return AddTache(changeScreen: changeScreen ,project: selectedProject!,);

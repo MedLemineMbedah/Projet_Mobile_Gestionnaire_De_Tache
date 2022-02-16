@@ -39,20 +39,20 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
   final DateFormat _dateFormatter =
       DateFormat('yyyy-MM-dd hh:mm'); //DateFormat();
 
-  @override
-  void initState() {
-    super.initState();
+  // @override
+  // void initState() {
+  //   super.initState();
 
-    _dat1Controller.text = _dateFormatter.format(_dat1);
-    _dat2Controller.text = _dateFormatter.format(_dat1);
-  }
+  //   _dat1Controller.text = _dateFormatter.format(_dat1);
+  //   _dat2Controller.text = _dateFormatter.format(_dat2);
+  // }
 
-  @override
-  void dispose() {
-    _dat1Controller.dispose();
-    _dat2Controller.dispose();
-    super.dispose();
-  }
+  // @override
+  // void dispose() {
+  //   _dat1Controller.dispose();
+  //   _dat2Controller.dispose();
+  //   super.dispose();
+  // }
 
   _handleDateDebutPicker() async {
     final DateTime? date = await showDatePicker(
@@ -92,9 +92,9 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
         appBar: AppBar(
           title: Text('create Project'),
           // to return to  ListProject screen
-         // leading: IconButton(onPressed: ()=> changeScreen(selectedScreen:ListTache.screenName),icon: Icon(Icons.arrow_back)),
+          // leading: IconButton(onPressed: ()=> changeScreen(selectedScreen:ListTache.screenName),icon: Icon(Icons.arrow_back)),
 
-        // backgroundColor: Colors.blue,
+          // backgroundColor: Colors.blue,
         ),
         body: GestureDetector(
           onTap: () {},
