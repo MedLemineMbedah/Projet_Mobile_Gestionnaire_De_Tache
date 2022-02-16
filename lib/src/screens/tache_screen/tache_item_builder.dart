@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projects3/src/daos/tacheDao.dart';
 import 'package:projects3/src/models/tache.dart';
 import 'package:projects3/src/screens/ressource_screen/liste_of_ressource_dis.dart';
 import 'package:projects3/src/daos/auth.dart';
@@ -55,10 +56,12 @@ onDismissed: (direction){
       if(direction == DismissDirection.startToEnd){
         print(tache.id);
         
+        
       } else if(direction == DismissDirection.endToStart){
         //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Swipe to right")));
         print(tache.id);
         print("supprimer");
+        TacheDao.supprimerTache(Auth.uid,tache.id);
         //ResourceDao.deleteRe(tache.id);
       }
     },

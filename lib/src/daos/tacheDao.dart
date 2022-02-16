@@ -1,8 +1,7 @@
-import 'dart:js_util';
+// import 'dart:js_util';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:projects3/src/daos/auth.dart';
 import 'package:projects3/src/daos/project_dao.dart';
 import 'package:projects3/src/daos/user_dao.dart';
@@ -10,7 +9,7 @@ import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/tache.dart';
 import 'package:provider/provider.dart';
 
-class TacheDao extends ChangeNotifier{
+class TacheDao {
   static String colName = 'tache';
 
   // add new Tache
@@ -82,6 +81,17 @@ class TacheDao extends ChangeNotifier{
     return query.docs.map(Tache.fromQueryDocumentSnapshot).toList();
   }
 
+  //Get tache terminer
+   static Future<List<Tache>> getUserTacheTerminer() async {
+    QuerySnapshot query = await FirebaseFirestore.instance
+        .collection(UserDao.colName)
+        .doc('Ajd6QYvkVLeZ3DZSL9mqqvOcVCA2')
+        .collection(colName)
+        .where('terminer', isEqualTo: true)
+        .get();
+    return query.docs.map(Tache.fromQueryDocumentSnapshot).toList();
+  }
+
   //Save tache for ressource
   static Future<void> SaveTacheOfRe(String idR, Tache t) async {
     await FirebaseFirestore.instance
@@ -112,10 +122,21 @@ class TacheDao extends ChangeNotifier{
         .collection(TacheDao.colName)
         .doc(idT)
         .update(terminer);
-       
-      
         
   }
+
+//delete
+static Future<void> supprimerTache(String uid, String idT) async {
+    await FirebaseFirestore.instance
+        .collection(UserDao.colName)
+        .doc(uid)
+        .collection(ProjectDao.colName)
+        .doc('XNLAhDO4qShLX6ZgJFe0')
+        .collection(TacheDao.colName)
+        .doc(idT)
+        .delete();
+  }
+
 
   static String get idP {
     return FirebaseFirestore.instance.collection(UserDao.colName).doc(Auth.uid).collection(ProjectDao.colName).id;
