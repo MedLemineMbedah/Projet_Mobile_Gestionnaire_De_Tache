@@ -112,7 +112,7 @@ class updateProjet extends StatelessWidget {
             // to return to  ListProject screen
             // leading: IconButton(onPressed: ()=> changeScreen(selectedScreen:ListTache.screenName),icon: Icon(Icons.arrow_back)),
             leading: IconButton(
-                onPressed: () => Auth.loguOut(), icon: Icon(Icons.arrow_back))
+                onPressed: () => changeScreen(selectedScreen:ListProject.screenName), icon: Icon(Icons.arrow_back))
             // backgroundColor: Colors.blue,
             ),
         body: GestureDetector(

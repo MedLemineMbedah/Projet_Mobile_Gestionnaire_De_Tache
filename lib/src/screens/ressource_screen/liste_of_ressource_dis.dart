@@ -38,7 +38,20 @@ class ListRessource extends StatelessWidget {
                                   Tache t = await TacheDao.getUserTache(Auth.uid, tache.id);
                                   TacheDao.changeEtat(Auth.uid,  tache.id);
                                   TacheDao.SaveTacheOfRe(snapshot.data![index].id,t);
-
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: Text('Result'),
+                                      content: Text('Affectation avec succes'),
+                                      actions: [
+                                        ElevatedButton(
+                                            onPressed: () {
+                                              Navigator.pop(context);
+                                            },
+                                            child: Text('Ok'))
+                                      ],
+                                    ),
+                                  );
                                   print("Saved");
                                   
                           //  ontap(project: project,selectedScreen:ListTache.screenName);

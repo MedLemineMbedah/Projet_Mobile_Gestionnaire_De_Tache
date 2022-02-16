@@ -105,9 +105,7 @@ class updateProjet extends StatelessWidget {
       }
     }
 
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+   return Scaffold(
         appBar: AppBar(
             title: Text('Update Project'),
             // to return to  ListProject screen
@@ -171,7 +169,7 @@ class updateProjet extends StatelessWidget {
                 hintText: 'Entrer Title',
                 labelStyle: TextStyle(
                   fontSize: 18.0,
-                  color: Colors.black54,
+                  color: Colors.white,
                 ),
               )),
                TextFormField(
@@ -199,7 +197,7 @@ class updateProjet extends StatelessWidget {
               //  hintText: 'Entrer la date',
                 labelStyle: TextStyle(
                   fontSize: 18.0,
-                  color: Colors.black54,
+                  color: Colors.white,
                 ),
               )),
           TextFormField(
@@ -227,7 +225,7 @@ class updateProjet extends StatelessWidget {
               //  hintText: 'Entrer la date',
                 labelStyle: TextStyle(
                   fontSize: 18.0,
-                  color: Colors.black54,
+                  color: Colors.white,
                 ),
               )),
           Padding(
@@ -276,7 +274,6 @@ class updateProjet extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

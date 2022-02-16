@@ -57,7 +57,34 @@ class _LoginScreenState extends State<LoginScreen> {
                     Auth.signIn(_email.text, _password.text);
                     
               }),
-             
+              // ElevatedButton(
+              // //  color: Theme.of(context).accentColor,
+              //   child: Text('pass'),
+              //   onPressed: (){
+              //      // Auth.signIn(_email.text, _password.text);
+                    
+              // }),
+                ElevatedButton(
+              //  color: Theme.of(context).accentColor,
+                child: Text('rest pass'),
+                onPressed: (){
+                    //Auth.signIn(_email.text, _password.text);
+                    Auth.resPass(_email.text);
+                     showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text('Result'),
+                      content: Text('Verifier votre email'),
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('Ok'))
+                      ],
+                    ),
+                  );
+              }),
             ])
           ],),
       ),

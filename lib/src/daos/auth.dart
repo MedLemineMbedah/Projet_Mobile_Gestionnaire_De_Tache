@@ -22,5 +22,9 @@ class Auth{
   static String get uid{
     return FirebaseAuth.instance.currentUser!.uid;
   }
+
+ static Future<void> resPass(String email) async {
+    await  FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+  }
   
 }
