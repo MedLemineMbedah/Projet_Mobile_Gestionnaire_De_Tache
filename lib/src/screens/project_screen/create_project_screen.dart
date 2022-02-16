@@ -24,8 +24,8 @@ class CreateProjectScreen extends StatefulWidget {
 }
 
 class _CreateProjectScreenState extends State<CreateProjectScreen> {
-  TextEditingController _title = TextEditingController(text: ' ');
-
+  //TextEditingController _title = TextEditingController(text: ' ');
+  late String _title;
   final _formKey = GlobalKey<FormState>();
 
   DateTime _dat1 = DateTime.now();
@@ -133,17 +133,30 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: TextField(
-                              keyboardType: TextInputType.text,
-                              decoration: InputDecoration(
-                                border: OutlineInputBorder(),
-                                labelText: 'Nom',
-                                hintText: 'Entrer votre nom',
+                            child: TextFormField(
 
-                                // hintText: 'Nom'
-                              ),
-                              controller: _title,
-                            ),
+              // The validator receives the text that the user has entered.
+                validator: (value) {
+                if (value == null || value.isEmpty) {
+                 return "Entrer un nom";
+                }
+                _title = value;
+                
+              },
+              // decoration: const InputDecoration(
+              //   border: OutlineInputBorder(),
+              //   labelText: 'Title',
+              //   hintText: 'Entrer Title',
+              // )),
+
+              decoration:  const InputDecoration(
+                labelText: "nom",
+                hintText: 'Entrer Title',
+                labelStyle: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.black54,
+                ),
+              )),
                           ),
 
                           // date debut
@@ -211,7 +224,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                                             _dat1Controller.text),
                                         dateFin: DateTime.parse(
                                             _dat2Controller.text),
-                                        titre: _title.text));
+                                        titre: _title));
                                 showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(

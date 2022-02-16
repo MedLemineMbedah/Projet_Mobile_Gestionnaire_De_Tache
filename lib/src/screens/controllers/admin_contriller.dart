@@ -8,7 +8,7 @@ import 'package:projects3/src/models/resource.dart';
 import 'package:projects3/src/screens/UserScreen/AddUser.dart';
 import 'package:projects3/src/screens/project_screen/create_project_screen.dart';
 import 'package:projects3/src/screens/project_screen/list_project.dart';
-import 'package:projects3/src/screens/project_screen/Update_project_screen.dart';
+import 'package:projects3/src/screens/project_screen/new_update.dart';
 
 import 'package:projects3/src/screens/ressource_screen/ressource_item_builder.dart';
 import 'package:projects3/src/screens/tache_screen/new_tache.dart';

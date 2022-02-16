@@ -3,7 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'package:projects3/src/daos/auth.dart';
 import 'package:projects3/src/daos/project_dao.dart';
 import 'package:projects3/src/models/project.dart';
-import 'package:projects3/src/screens/project_screen/Update_project_screen.dart';
+import 'package:projects3/src/screens/project_screen/new_update.dart';
 import 'package:projects3/src/screens/ressource_screen/liste_of_ressource_dis.dart';
 import 'package:projects3/src/screens/tache_screen/list_tache.dart';
 

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projects3/src/daos/auth.dart';
 import 'package:projects3/src/daos/user_dao.dart';
 import 'package:projects3/src/models/user.dart';
 class AddUser extends StatelessWidget {
@@ -16,6 +17,8 @@ class AddUser extends StatelessWidget {
       home: Scaffold(
         appBar: AppBar(
           title: const Text(appTitle),
+          leading: IconButton(onPressed: ()=> Auth.loguOut(),icon: Icon(Icons.arrow_back)),
+     
         ),
         body: const MyCustomForm(),
       ),
@@ -118,16 +121,26 @@ late String nom,email,password,prenom;
                   UserMadel u =UserMadel(nom:nom,prenom: prenom,email: email);
                   UserDao.saveUser1(u);
                   
-                    print(u.prenom);
-                    print(u.nom);
-                    print(u.email);
-                  
+                   showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text('Result'),
+                      content: Text('Ajout avec succes'),
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('Ok'))
+                      ],
+                    ),
+                  );
                   // ScaffoldMessenger.of(context).showSnackBar(
                   //   const SnackBar(content: Text('Processing Data')),
                   // );
                 }
               },
-              child: const Text('Submit'),
+              child: const Text('ajouter'),
             ),
           ),
         ],

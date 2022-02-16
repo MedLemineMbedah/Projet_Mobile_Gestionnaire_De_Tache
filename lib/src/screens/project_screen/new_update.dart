@@ -27,6 +27,7 @@ class updateProjet extends StatelessWidget {
 
  // TextEditingController _title = TextEditingController(text: "");
   late String _title;
+  late int duree;
   final _formKey = GlobalKey<FormState>();
 
   DateTime _dat1 = DateTime.now();
@@ -143,36 +144,21 @@ class updateProjet extends StatelessWidget {
                     SizedBox(
                       height: 20.0,
                     ),
-
-                    Form(
-                      key: _formKey,
-                      child: Column(
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.all(8.0),
-                            // child: TextField(
-                            //   keyboardType: TextInputType.text,
-                            //   decoration: InputDecoration(
-                            //     border: OutlineInputBorder(),
-                            //     labelText: project.titre,
-                            //     hintText: 'Entrer le nouveau nom',
-
-                            //     // hintText: 'Nom'
-                            //   ),
-                            //   controller: _title,
-                              
-                              
-                            // ),
-                              child: TextFormField(
+        Form(
+              key: _formKey,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  TextFormField(
 
               // The validator receives the text that the user has entered.
-              validator: (value) {
+                validator: (value) {
                 if (value == null || value.isEmpty) {
-                  _title = project.titre.toString();
+                  _title= project.titre;
                 }
-
-                 _title = value.toString();
-                 //controller: _title.toString();
+                else{
+                _title = value;
+                }
               },
               // decoration: const InputDecoration(
               //   border: OutlineInputBorder(),
@@ -180,113 +166,110 @@ class updateProjet extends StatelessWidget {
               //   hintText: 'Entrer Title',
               // )),
 
-              decoration: const InputDecoration(
-                labelText: 'nom',
+              decoration:  InputDecoration(
+                labelText: project.titre,
                 hintText: 'Entrer Title',
                 labelStyle: TextStyle(
                   fontSize: 18.0,
                   color: Colors.black54,
                 ),
               )),
-                          ),
+               TextFormField(
+             // keyboardType: TextInputType.number,
+             readOnly: true,
+            controller: _dat1Controller,
+            onTap: _handleDateFinPicker,
+              // The validator receives the text that the user has entered.
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  _dat1Controller.text =project.dateDedut.toString();
+                }
 
-                          // date debut
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 10.0,
-                            ),
-                            child: TextFormField(
-                              readOnly: true,
-                              controller: _dat1Controller,
-                              onTap: _handleDateDebutPicker,
-                              style: TextStyle(
-                                fontSize: 18.0,
-                              ),
-                              decoration: InputDecoration(
-                                labelText: project.dateDedut.toString(),
-                                labelStyle: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.black54,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                          // date fin
-                          Padding(
-                            padding: EdgeInsets.symmetric(
-                              vertical: 10.0,
-                            ),
-                            child: TextFormField(
-                              readOnly: true,
-                              controller: _dat2Controller,
-                              onTap: _handleDateFinPicker,
-                              style: TextStyle(
-                                fontSize: 18.0,
-                              ),
-                              decoration: InputDecoration(
-                                labelText: project.dateFin.toString(),
-                                
-                                labelStyle: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.black54,
-                                ),
-                                border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10.0),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.symmetric(vertical: 20.0),
-                            height: 60.0,
-                            width: double.infinity,
-                            decoration: BoxDecoration(
-                              color: Theme.of(context).primaryColor,
-                              borderRadius: BorderRadius.circular(40.0),
-                            ),
-                            child: ElevatedButton(
-                              
-                              onPressed: () async {
-                                ProjectDao.UpdateProject(
+               else  _dat1Controller.text = value.toString();
+              },
+              // decoration: const InputDecoration(
+              //   border: OutlineInputBorder(),
+              //   labelText: 'duree',
+              //   hintText: 'Entrer la duree',
+              // )
+              // ),
+
+              decoration:  InputDecoration(
+                labelText: project.dateDedut.toString(),
+              //  hintText: 'Entrer la date',
+                labelStyle: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.black54,
+                ),
+              )),
+          TextFormField(
+             // keyboardType: TextInputType.number,
+             readOnly: true,
+            controller: _dat2Controller,
+            onTap: _handleDateFinPicker,
+              // The validator receives the text that the user has entered.
+              validator: (value) {
+                if (value == null || value.isEmpty) {
+                  _dat2Controller.text =project.dateFin.toString();
+                }
+
+               else  _dat2Controller.text = value.toString();
+              },
+              // decoration: const InputDecoration(
+              //   border: OutlineInputBorder(),
+              //   labelText: 'duree',
+              //   hintText: 'Entrer la duree',
+              // )
+              // ),
+
+              decoration:  InputDecoration(
+                labelText: project.dateFin.toString(),
+              //  hintText: 'Entrer la date',
+                labelStyle: TextStyle(
+                  fontSize: 18.0,
+                  color: Colors.black54,
+                ),
+              )),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 16.0),
+            child: ElevatedButton(
+              onPressed: () {
+                // Validate returns true if the form is valid, or false otherwise.
+                if (_formKey.currentState!.validate()) {
+                //  Tache t = Tache(duree: duree, titre: titre);
+                      ProjectDao.UpdateProject(
                                     Auth.uid,
                                     project.id,
                                     Project(
-                                        dateDedut:  DateTime.parse(
+                                        dateDedut: DateTime.parse(
                                             _dat1Controller.text),
                                         dateFin:DateTime.parse(
                                             _dat2Controller.text),
                                         titre: _title));
-                                showDialog(
-                                  context: context,
-                                  builder: (context) => AlertDialog(
-                                    title: Text('Result'),
-                                    content: Text('modification avec succes'),
-                                    actions: [
-                                      ElevatedButton(
-                                          onPressed: () {
-                                            Navigator.pop(context);
-                                          },
-                                          child: Text('Ok'))
-                                    ],
-                                  ),
-                                );
-                              },
-                              child: Text(
-                                btnText.toUpperCase(),
-                                style: TextStyle(
-                                  fontSize: 18.0,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                ),
-                              ),
-                            ),
-                          ),
-                        ],
-                      ),
-                    )
+                // TacheDao.SaveTache(Auth.uid, , t);
+
+                  showDialog(
+                    context: context,
+                    builder: (context) => AlertDialog(
+                      title: Text('Result'),
+                      content: Text('modification avec succes'),
+                      actions: [
+                        ElevatedButton(
+                            onPressed: () {
+                              Navigator.pop(context);
+                            },
+                            child: Text('Ok'))
+                      ],
+                    ),
+                  );
+                }
+              },
+              child: const Text('Modifier'),
+            ),
+          ),
+        ],
+      ),
+    ),
                   ],
                 ),
               ),

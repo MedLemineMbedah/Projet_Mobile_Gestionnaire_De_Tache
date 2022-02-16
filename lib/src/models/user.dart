@@ -16,8 +16,8 @@ class UserMadel{
     'nom': nom,
     "prenom" : prenom,
     'email' : email,
-    'isAdmin' : isAdmin
-
+    'isAdmin' : false
+    
     };
   }
 
