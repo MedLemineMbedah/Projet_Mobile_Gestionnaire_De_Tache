@@ -201,6 +201,7 @@ class updateProjet extends StatelessWidget {
                               ),
                               decoration: InputDecoration(
                                 labelText: project.dateFin.toString(),
+                                
                                 labelStyle: TextStyle(
                                   fontSize: 18.0,
                                   color: Colors.black54,

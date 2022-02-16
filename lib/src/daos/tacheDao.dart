@@ -1,12 +1,16 @@
+import 'dart:js_util';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:projects3/src/daos/auth.dart';
 import 'package:projects3/src/daos/project_dao.dart';
 import 'package:projects3/src/daos/user_dao.dart';
 import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/tache.dart';
+import 'package:provider/provider.dart';
 
-class TacheDao {
+class TacheDao extends ChangeNotifier{
   static String colName = 'tache';
 
   // add new Tache
@@ -97,13 +101,17 @@ class TacheDao {
   }
 
    static Future<void> changeTermin(String uid, String idT) async {
-    Map<String, dynamic> terminer = {"terminer": true};
+    Map<String, dynamic> terminer = {"terminer": false};
+    
     await FirebaseFirestore.instance
         .collection(UserDao.colName)
         .doc(uid)
         .collection(TacheDao.colName)
         .doc(idT)
         .update(terminer);
+       
+      
+        
   }
 
   static String get idP {

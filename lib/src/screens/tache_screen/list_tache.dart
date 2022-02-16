@@ -53,6 +53,7 @@ class ListTache extends StatelessWidget {
             if(snapshot.data!.isEmpty) return Center( child: Text('pas de project '),);
              return ListView.builder(
             itemCount: snapshot.data!.length,
+           // notifyListeners();
             itemBuilder: (context,index)=> tachetemBuilder(ontap: changeScreen,tache: snapshot.data![index],));
           
           
