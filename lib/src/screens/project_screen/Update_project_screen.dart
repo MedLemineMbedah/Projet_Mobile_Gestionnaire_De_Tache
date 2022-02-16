@@ -228,7 +228,7 @@ class updateProjet extends StatelessWidget {
                                         dateDedut:  DateTime.parse(
                                             _dat1Controller.text),
                                         dateFin:DateTime.parse(
-                                            _dat1Controller.text),
+                                            _dat2Controller.text),
                                         titre: _title.text));
                                 showDialog(
                                   context: context,
