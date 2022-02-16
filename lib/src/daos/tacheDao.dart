@@ -96,6 +96,16 @@ class TacheDao {
         .update(occupation);
   }
 
+   static Future<void> changeTermin(String uid, String idT) async {
+    Map<String, dynamic> terminer = {"terminer": true};
+    await FirebaseFirestore.instance
+        .collection(UserDao.colName)
+        .doc(uid)
+        .collection(TacheDao.colName)
+        .doc(idT)
+        .update(terminer);
+  }
+
   static String get idP {
     return FirebaseFirestore.instance.collection(UserDao.colName).doc(Auth.uid).collection(ProjectDao.colName).id;
   }

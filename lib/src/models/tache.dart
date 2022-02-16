@@ -5,12 +5,15 @@ class Tache {
   String titre;
   int duree;
   bool occupation;
+  bool teminer;
 
   Tache(
       {required this.duree,
       required this.titre,
       this.id = '',
-      this.occupation = false});
+      this.occupation = false,
+      this.teminer=false
+      });
 
   Map<String, dynamic> asMap() {
     return {
@@ -24,7 +27,10 @@ class Tache {
         id: idP,
         duree: data['duree'],
         titre: data['titre'] ?? '',
-        occupation: data['occupation'] ?? false);
+        occupation: data['occupation'] ?? false,
+        teminer: data['terminer'] ?? false
+        
+        );
   }
 
   static Tache fromDocumentSnapshot(DocumentSnapshot doc) {

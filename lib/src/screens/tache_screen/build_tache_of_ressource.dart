@@ -12,7 +12,7 @@ class ListTache_of_project extends StatelessWidget {
   static const String screenName = 'listTache';
   
 //  Project project;
- // Function changeScreen;
+// Function changeScreen;
   ListTache_of_project({ Key? key }) : super(key: key);
  // Project project;
 
@@ -45,9 +45,6 @@ class ListTache_of_project extends StatelessWidget {
           if(snapshot.hasData){
             if(snapshot.data!.isEmpty) return Center( child: Text('pas de tache !!! '),);
 
-
-
-
              return
              
               ListView.builder(
@@ -60,6 +57,8 @@ class ListTache_of_project extends StatelessWidget {
                     onDismissed: (direction) {
                      // documentSnapshot.data().remove(index);
                      print(snapshot.data![index].titre);
+           
+                  TacheDao.changeTermin(Auth.uid, snapshot.data![index].id);
                      //ProjectDao.deleteP(project.id, Auth.uid);
                      
                      
@@ -88,13 +87,16 @@ class ListTache_of_project extends StatelessWidget {
   );
 },
 
-                    
-
+ 
                     direction: DismissDirection.endToStart,
             
             child: 
             ListTile(
-                        title: Text(snapshot.data![index].titre)  ,
+                        title: Text(snapshot.data![index].titre,
+                         style: TextStyle(
+            decoration:
+                snapshot.data![index].teminer ? TextDecoration.lineThrough : TextDecoration.none,
+                        )) ,
                         subtitle: Text(
                           "duree: ${snapshot.data![index].duree.toString()}"
                           ),
@@ -118,13 +120,7 @@ class ListTache_of_project extends StatelessWidget {
             
         }
       ),
-    //    floatingActionButton: FloatingActionButton(   
-    //     elevation: 8.0,   
-    //     child: Icon(Icons.logout),   
-    //     onPressed: (){   
-    //      Auth.loguOut();  
-    //     }   
-    // ),  
+
     );
   }
 }
