@@ -24,8 +24,8 @@ class CreateProjectScreen extends StatefulWidget {
 }
 
 class _CreateProjectScreenState extends State<CreateProjectScreen> {
-  //TextEditingController _title = TextEditingController(text: ' ');
-  late String _title;
+  TextEditingController _title = TextEditingController(text: ' ');
+
   final _formKey = GlobalKey<FormState>();
 
   DateTime _dat1 = DateTime.now();
@@ -86,9 +86,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+   return Scaffold(
         appBar: AppBar(
           title: Text('create Project'),
           // to return to  ListProject screen
@@ -133,30 +131,17 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                         children: [
                           Padding(
                             padding: const EdgeInsets.all(8.0),
-                            child: TextFormField(
+                            child: TextField(
+                              keyboardType: TextInputType.text,
+                              decoration: InputDecoration(
+                                border: OutlineInputBorder(),
+                                labelText: 'Nom',
+                                hintText: 'Entrer votre nom',
 
-              // The validator receives the text that the user has entered.
-                validator: (value) {
-                if (value == null || value.isEmpty) {
-                 return "Entrer un nom";
-                }
-                _title = value;
-                
-              },
-              // decoration: const InputDecoration(
-              //   border: OutlineInputBorder(),
-              //   labelText: 'Title',
-              //   hintText: 'Entrer Title',
-              // )),
-
-              decoration:  const InputDecoration(
-                labelText: "nom",
-                hintText: 'Entrer Title',
-                labelStyle: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.black54,
-                ),
-              )),
+                                // hintText: 'Nom'
+                              ),
+                              controller: _title,
+                            ),
                           ),
 
                           // date debut
@@ -175,7 +160,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                                 labelText: 'DateDebut',
                                 labelStyle: TextStyle(
                                   fontSize: 18.0,
-                                  color: Colors.black54,
+                                  color: Colors.white,
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
@@ -199,7 +184,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                                 labelText: 'DateFin',
                                 labelStyle: TextStyle(
                                   fontSize: 18.0,
-                                  color: Colors.black54,
+                                  color: Colors.white,
                                 ),
                                 border: OutlineInputBorder(
                                   borderRadius: BorderRadius.circular(10.0),
@@ -224,7 +209,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
                                             _dat1Controller.text),
                                         dateFin: DateTime.parse(
                                             _dat2Controller.text),
-                                        titre: _title));
+                                        titre: _title.text));
                                 showDialog(
                                   context: context,
                                   builder: (context) => AlertDialog(
@@ -259,7 +244,7 @@ class _CreateProjectScreenState extends State<CreateProjectScreen> {
             ),
           ),
         ),
-      ),
-    );
+      )
+    ;
   }
 }

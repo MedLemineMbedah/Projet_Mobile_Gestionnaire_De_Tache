@@ -39,9 +39,7 @@ class AddTache extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
   
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+   return Scaffold(
         appBar: AppBar(
             title: Text('Ajouter une Tache'),
             // to return to  ListProject screen
@@ -105,7 +103,7 @@ class AddTache extends StatelessWidget {
                 hintText: 'Entrer Title',
                 labelStyle: TextStyle(
                   fontSize: 18.0,
-                  color: Colors.black54,
+                  color: Colors.white,
                 ),
               )),
           TextFormField(
@@ -131,7 +129,7 @@ class AddTache extends StatelessWidget {
                 hintText: 'Entrer la duree',
                 labelStyle: TextStyle(
                   fontSize: 18.0,
-                  color: Colors.black54,
+                  color: Colors.white,
                 ),
               )),
           Padding(
@@ -172,7 +170,6 @@ class AddTache extends StatelessWidget {
             ),
           ),
         ),
-      ),
-    );
+      );
   }
 }

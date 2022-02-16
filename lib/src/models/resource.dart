@@ -3,17 +3,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 class Resource{
   String id;
   String nom;
-  String  address;
+  String  email;
   String  contact;
   bool estOcupper;
   
 
-  Resource({required this.nom, this.address='', this.contact='', this.id = '',this.estOcupper = false});
+  Resource({required this.nom, this.email='', this.contact='', this.id = '',this.estOcupper = false});
 
   Map<String ,dynamic> asMap(){
     return {
     'nom': nom,
-    "address" : address,
+    "email" : email,
     'contact' : contact,
     'estOcupper' : estOcupper
     };
@@ -27,7 +27,7 @@ class Resource{
    static Resource fromMap(Map<String,dynamic > data , String idP){
     return  Resource(
       id : idP,
-      address:  data['address'] ?? '' ,
+      email:  data['email'] ?? '' ,
        contact: data['contact']  ?? '',
        nom: data['nom'] ?? '' ,
        estOcupper : data['estOcupper'] ?? false

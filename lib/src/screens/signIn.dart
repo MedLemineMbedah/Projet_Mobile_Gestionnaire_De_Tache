@@ -20,11 +20,8 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return  MaterialApp(
-      
-      debugShowCheckedModeBanner :false,
-      title: "appTitle",
-      home:Scaffold(  
+    
+      return Scaffold(  
 
       appBar: AppBar(title: Text('Login'),),
       body: Form(
@@ -55,7 +52,7 @@ class _LoginScreenState extends State<LoginScreen> {
               children:[
               ElevatedButton(
               //  color: Theme.of(context).accentColor,
-                child: Text('Signin'),
+                child: Text('Connection'),
                 onPressed: (){
                     Auth.signIn(_email.text, _password.text);
                     
@@ -64,6 +61,6 @@ class _LoginScreenState extends State<LoginScreen> {
             ])
           ],),
       ),
-    ));
+    );
   }
 }

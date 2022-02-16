@@ -12,17 +12,14 @@ class AddUser extends StatelessWidget {
   Widget build(BuildContext context) {
     const appTitle = 'Ajouter une Ressource';
 
-    return MaterialApp(
-      title: appTitle,
-      home: Scaffold(
+    return Scaffold(
         appBar: AppBar(
           title: const Text(appTitle),
           leading: IconButton(onPressed: ()=> Auth.loguOut(),icon: Icon(Icons.arrow_back)),
      
         ),
         body: const MyCustomForm(),
-      ),
-    );
+      );
   }
 }
 
@@ -45,7 +42,9 @@ class MyCustomFormState extends State<MyCustomForm> {
   // Note: This is a GlobalKey<FormState>,
   // not a GlobalKey<MyCustomFormState>.
   final _formKey = GlobalKey<FormState>();
-late String nom,email,password,prenom;
+late String nom,email,prenom;
+ TextEditingController _password = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     // Build a Form widget using the _formKey created above.
@@ -106,7 +105,7 @@ late String nom,email,password,prenom;
               child: TextField(
                 obscureText: true,
                 decoration: InputDecoration(hintText: 'Password'),
-               // controller: _password,
+                controller: _password,
               ),
               
             ),
@@ -119,7 +118,8 @@ late String nom,email,password,prenom;
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
                   UserMadel u =UserMadel(nom:nom,prenom: prenom,email: email);
-                  UserDao.saveUser1(u);
+                  //UserDao.saveUser1(u);
+                  Auth.loguIn(u,_password.text);
                   
                    showDialog(
                     context: context,

@@ -42,4 +42,8 @@ static Future<List<Resource>> getAllResourcesDipo() async {
       QuerySnapshot doc = await  FirebaseFirestore.instance.collection(UserDao.colName).where('estOcupper', isEqualTo: false).get();
       return doc.docs.map(Resource.fromQueryDocumentSnapshot).toList();
   }
+
+  static Future<void> saveUser( String uid,Resource res) async{
+    await   FirebaseFirestore.instance.collection(UserDao.colName).doc(uid).collection(ResourceDao.colName).add(res.asMap());
+  }
 }

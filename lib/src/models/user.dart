@@ -7,17 +7,19 @@ class UserMadel{
   String  email;
   bool isAdmin;
   
+  bool estOcupper;
   
 
-  UserMadel({required this.nom,required this.prenom,required this.email, this.isAdmin = false, this.id = ''});
+  UserMadel({required this.nom,required this.prenom,required this.email, this.isAdmin = false, this.id = '',this.estOcupper= false});
 
   Map<String ,dynamic> asMap(){
     return {
     'nom': nom,
     "prenom" : prenom,
     'email' : email,
-    'isAdmin' : false
-    
+    'isAdmin' : false,
+    'estOcupper' :false
+
     };
   }
 
@@ -28,6 +30,7 @@ class UserMadel{
        prenom: data['prenom'] ?? '',
        email: data['email']  ?? '',
        isAdmin: data['isAdmin']  ?? false,
+      estOcupper: data['estOcupper']  ?? false,
         );
   }
 
