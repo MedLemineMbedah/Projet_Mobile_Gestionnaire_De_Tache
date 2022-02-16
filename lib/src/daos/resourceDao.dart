@@ -39,7 +39,7 @@ class ResourceDao{
   }
 
 static Future<List<Resource>> getAllResourcesDipo() async {
-      QuerySnapshot doc = await  FirebaseFirestore.instance.collection(UserDao.colName).where('estOcupper', isEqualTo: false).get();
+      QuerySnapshot doc = await  FirebaseFirestore.instance.collection(UserDao.colName).where('estOcupper', isEqualTo: false).where('isAdmin',isEqualTo: false).get();
       return doc.docs.map(Resource.fromQueryDocumentSnapshot).toList();
   }
 

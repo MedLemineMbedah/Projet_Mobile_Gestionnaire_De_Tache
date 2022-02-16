@@ -107,7 +107,7 @@ class TacheDao {
         .collection(UserDao.colName)
         .doc(uid)
         .collection(ProjectDao.colName)
-        .doc()
+        .doc('Gmr2q29eBAXeUwRpYdeB')
         .collection(TacheDao.colName)
         .doc(idT)
         .update(occupation);
@@ -131,7 +131,7 @@ static Future<void> supprimerTache(String uid, String idT) async {
         .collection(UserDao.colName)
         .doc(uid)
         .collection(ProjectDao.colName)
-        .doc('XNLAhDO4qShLX6ZgJFe0')
+        .doc('Gmr2q29eBAXeUwRpYdeB')
         .collection(TacheDao.colName)
         .doc(idT)
         .delete();

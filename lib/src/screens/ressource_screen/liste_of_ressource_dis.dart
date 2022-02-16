@@ -36,7 +36,9 @@ class ListRessource extends StatelessWidget {
                           onTap: ()  async {
                                   ResourceDao.ResourceAuccupe(snapshot.data![index].id);
                                   Tache t = await TacheDao.getUserTache(Auth.uid, tache.id);
+                                  TacheDao.changeEtat(Auth.uid,  tache.id);
                                   TacheDao.SaveTacheOfRe(snapshot.data![index].id,t);
+
                                   print("Saved");
                                   
                           //  ontap(project: project,selectedScreen:ListTache.screenName);
