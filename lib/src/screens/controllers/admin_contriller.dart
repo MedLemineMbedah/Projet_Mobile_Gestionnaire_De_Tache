@@ -11,7 +11,7 @@ import 'package:projects3/src/screens/project_screen/list_project.dart';
 import 'package:projects3/src/screens/project_screen/Update_project_screen.dart';
 
 import 'package:projects3/src/screens/ressource_screen/ressource_item_builder.dart';
-import 'package:projects3/src/screens/tache_screen/AddTache.dart';
+import 'package:projects3/src/screens/tache_screen/new_tache.dart';
 import 'package:projects3/src/screens/tache_screen/list_tache.dart';
 import 'package:projects3/src/screens/ressource_screen/liste_of_ressource_dis.dart';
 

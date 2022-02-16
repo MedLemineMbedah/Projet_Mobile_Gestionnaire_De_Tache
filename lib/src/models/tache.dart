@@ -19,6 +19,8 @@ class Tache {
     return {
       'titre': titre,
       "duree": duree,
+      'occupation' :occupation,
+      'terminer':teminer
     };
   }
 

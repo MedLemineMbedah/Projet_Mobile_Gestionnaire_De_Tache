@@ -5,8 +5,9 @@ import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/tache.dart';
 import 'package:projects3/src/screens/controllers/admin_contriller.dart';
 import 'package:projects3/src/screens/controllers/user_controller.dart';
+import 'package:projects3/src/screens/project_screen/Update_project_screen.dart';
 import 'package:projects3/src/screens/project_screen/list_project.dart';
-import 'package:projects3/src/screens/tache_screen/AddTache.dart';
+import 'package:projects3/src/screens/tache_screen/new_tache.dart';
 import 'package:projects3/src/screens/tache_screen/tache_item_builder.dart';
 import 'package:projects3/src/daos/tacheDao.dart';
 import 'package:projects3/src/daos/auth.dart';
@@ -72,8 +73,9 @@ class ListTache extends StatelessWidget {
         child: Icon(Icons.add),   
         onPressed: (){   
            
-          
-          { changeScreen(project: project,selectedScreen:AddTache.screenName );}
+         // print(project.titre);
+         { changeScreen(selectedScreen:AddTache.screenName );}
+        
         }   
     ),   
     );
