@@ -72,7 +72,7 @@ class ListTache extends StatelessWidget {
         onPressed: (){   
            
           
-          { changeScreen(project: project,selectedScreen:AddTache.screenName );project.id;}
+          { changeScreen(project: project,selectedScreen:AddTache.screenName );}
         }   
     ),   
     );

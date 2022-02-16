@@ -176,7 +176,7 @@ class updateProjet extends StatelessWidget {
                                 fontSize: 18.0,
                               ),
                               decoration: InputDecoration(
-                                labelText: 'DateDebut',
+                                labelText: project.dateDedut.toString(),
                                 labelStyle: TextStyle(
                                   fontSize: 18.0,
                                   color: Colors.black54,
@@ -200,7 +200,7 @@ class updateProjet extends StatelessWidget {
                                 fontSize: 18.0,
                               ),
                               decoration: InputDecoration(
-                                labelText: 'DateFin',
+                                labelText: project.dateFin.toString(),
                                 labelStyle: TextStyle(
                                   fontSize: 18.0,
                                   color: Colors.black54,
@@ -225,8 +225,10 @@ class updateProjet extends StatelessWidget {
                                     Auth.uid,
                                     project.id,
                                     Project(
-                                        dateDedut: project.dateDedut,
-                                        dateFin: project.dateFin,
+                                        dateDedut:  DateTime.parse(
+                                            _dat1Controller.text),
+                                        dateFin:DateTime.parse(
+                                            _dat1Controller.text),
                                         titre: _title.text));
                                 showDialog(
                                   context: context,
