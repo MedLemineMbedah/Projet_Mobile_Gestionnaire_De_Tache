@@ -33,18 +33,21 @@ class TacheDao {
   //  return query.docs.map(Tache.fromQueryDocumentSnapshot).toList();
 
   // }
-
+//haa4i
   static Future<Tache> getUserTache(String uid, String idT) async {
     DocumentSnapshot doc = await FirebaseFirestore.instance
         .collection(UserDao.colName)
         .doc(uid)
-        .collection(ProjectDao.colName)
-        .doc("XNLAhDO4qShLX6ZgJFe0")
+        .collection(ProjectDao.colName).doc('XNLAhDO4qShLX6ZgJFe0')
         .collection(colName)
         .doc(idT)
         .get();
+        
     return Tache.fromDocumentSnapshot(doc);
   }
+  ///////////////////////////////////////////////////
+  
+  //////////////////////////////////////////////////
 
   static Future<List<Tache>> getResourceTache(String uid) async {
     QuerySnapshot query = await FirebaseFirestore.instance
