@@ -1,18 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:projects3/src/daos/tacheDao.dart';
+import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/tache.dart';
 import 'package:projects3/src/screens/ressource_screen/liste_of_ressource_dis.dart';
 import 'package:projects3/src/daos/auth.dart';
 import 'package:projects3/src/daos/resourceDao.dart';
 import 'package:projects3/src/models/resource.dart';
 import 'package:projects3/src/daos/auth.dart';
+import 'package:provider/provider.dart';
 
 class tachetemBuilder extends StatelessWidget {
-  //static const String screenName = 'listRessource';
+ // static const String screenName = 'tachetemBuilder';
   
   Tache tache;
   Function ontap;
-  tachetemBuilder({ Key? key , required this.tache,required this.ontap }) : super(key: key);
+  Project projet;
+  tachetemBuilder({ Key? key , required this.tache, required this.projet,required this.ontap }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -61,7 +64,8 @@ onDismissed: (direction){
         //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Swipe to right")));
         print(tache.id);
         print("supprimer");
-        TacheDao.supprimerTache(Auth.uid,tache.id);
+        
+        TacheDao.supprimerTache(Auth.uid,tache.id,context.read<String>());
         //ResourceDao.deleteRe(tache.id);
       }
     },

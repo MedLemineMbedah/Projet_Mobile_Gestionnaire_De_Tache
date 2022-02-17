@@ -75,7 +75,7 @@ class _AdminControllerState extends State<AdminController> {
     case AddUser.screenName : return AddUser(changeScreen: changeScreen ,);
    case AddTache.screenName : return AddTache(changeScreen: changeScreen ,project: selectedProject!,);
    
-   case ListRessource.screenName : return ListRessource(changeScreen: onTapProjectonTapRessource ,tache: selectedTache!,);
+   case ListRessource.screenName : return ListRessource(changeScreen: onTapProjectonTapRessource ,tache: selectedTache! ,project: selectedProject!,);
    
       default: return ListProject(changeScreen:onTapProject);
     }

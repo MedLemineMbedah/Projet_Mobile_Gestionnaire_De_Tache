@@ -1,5 +1,5 @@
 import 'dart:io';
-
+import 'package:provider/provider.dart';
 import 'package:flutter/material.dart';
 import 'package:projects3/src/models/project.dart';
 import 'package:projects3/src/models/tache.dart';
@@ -47,7 +47,9 @@ class ListTache extends StatelessWidget {
         ],
      // leading: IconButton(onPressed: changeScreen(selectedScreen:ListProject.screenName), icon: Icon(Icons.arrow_back)),
       ),
-      body: FutureBuilder<List<Tache>>(
+      body: Provider <String> ( 
+        create: (context) => project.id,
+        child:FutureBuilder<List<Tache>>(
         future: TacheDao.getUserTacheNonAffecter(Auth.uid,project.id),
         builder: (context, snapshot) {
           if(snapshot.hasData){
@@ -55,9 +57,7 @@ class ListTache extends StatelessWidget {
              return ListView.builder(
             itemCount: snapshot.data!.length,
            // notifyListeners();
-            itemBuilder: (context,index)=> tachetemBuilder(ontap: changeScreen,tache: snapshot.data![index],));
-          
-          
+            itemBuilder: (context,index)=> tachetemBuilder(ontap: changeScreen,tache: snapshot.data![index], projet: project,));
           
           }
 
@@ -67,7 +67,7 @@ class ListTache extends StatelessWidget {
          
             
         }
-      ),
+      )),
         floatingActionButton: FloatingActionButton(   
         elevation: 8.0,   
         child: Icon(Icons.add),   
