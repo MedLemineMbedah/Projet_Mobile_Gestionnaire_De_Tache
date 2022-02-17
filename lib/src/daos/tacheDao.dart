@@ -2,6 +2,7 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/material.dart';
 import 'package:projects3/src/daos/auth.dart';
 import 'package:projects3/src/daos/project_dao.dart';
 import 'package:projects3/src/daos/user_dao.dart';
@@ -45,6 +46,8 @@ class TacheDao {
         .collection(colName)
         .doc(idT)
         .get();
+        // Query<Map<String, dynamic>> doc = await FirebaseFirestore.instance
+        // .collectionGroup("tache").where('id',isEqualTo: idT);
         
     return Tache.fromDocumentSnapshot(doc);
   }
@@ -141,4 +144,44 @@ static Future<void> supprimerTache(String uid, String idT) async {
   static String get idP {
     return FirebaseFirestore.instance.collection(UserDao.colName).doc(Auth.uid).collection(ProjectDao.colName).id;
   }
+
+  // static Future<Tache> getUserTache1(String uid, String idT) async {
+  //   // DocumentSnapshot doc = await FirebaseFirestore.instance
+  //   //     .collection(UserDao.colName)
+  //   //     .doc(uid)
+  //   //     .collection(ProjectDao.colName).doc('Gmr2q29eBAXeUwRpYdeB')
+  //   //     .collection(colName)
+  //   //     .doc(idT)
+  //   //     .get();
+  //     QuerySnapshot  query = FirebaseFirestore.instance.collectionGroup("tache").where('id',isEqualTo: idT);
+  //     //   return doc.docs.map(Tache.fromQueryDocumentSnapshot).toList();
+  //     if(query.docs.length != 0){
+  //       return  query.docs.first.map(Tache.fromQueryDocumentSnapshot).toList();
+  //     }
+  //  // return query.map(Tache.fromQueryDocumentSnapshot).toList();
+  // }
+  //  Future<void> getUserTache2(String uid, String idT) async{
+  //    FirebaseFirestore.instance.collectionGroup("tache").where('id' ,isEqualTo: false ).where('iscanceled' ,isEqualTo: idT ).get();
+  //  }
+
+   static Future<List<Tache>> getTache(String idT) async {
+    QuerySnapshot query;
+    
+       query = await  FirebaseFirestore.instance.collectionGroup("tache").where('id',isEqualTo: idT).get();
+    
+    
+    
+     return query.docs.map((e){
+       return Tache.fromQueryDocumentSnapshot(e);
+     }).toList();
+  }
+
+
+ static Tache getUserTache2(String uid, String idT) {
+     var list;
+   list= getTache(idT);
+
+    return list[0];
+
+}
 }
