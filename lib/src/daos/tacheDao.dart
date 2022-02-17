@@ -44,19 +44,17 @@ class TacheDao {
     DocumentSnapshot doc = await FirebaseFirestore.instance
         .collection(UserDao.colName)
         .doc(uid)
-        .collection(ProjectDao.colName)
-        .doc('Gmr2q29eBAXeUwRpYdeB')
+        .collection(ProjectDao.colName).doc('Gmr2q29eBAXeUwRpYdeB')
         .collection(colName)
         .doc(idT)
         .get();
-
-    // Query<Map<String, dynamic>> doc = await FirebaseFirestore.instance
-    // .collectionGroup("tache").where('id',isEqualTo: idT);
-
+        // Query<Map<String, dynamic>> doc = await FirebaseFirestore.instance
+        // .collectionGroup("tache").where('id',isEqualTo: idT);
+        
     return Tache.fromDocumentSnapshot(doc);
   }
   ///////////////////////////////////////////////////
-
+  
   //////////////////////////////////////////////////
 
   static Future<List<Tache>> getResourceTache(String uid) async {
@@ -98,7 +96,7 @@ class TacheDao {
   }
 
   //Get tache terminer
-  static Future<List<Tache>> getUserTacheTerminer() async {
+   static Future<List<Tache>> getUserTacheTerminer() async {
     QuerySnapshot query = await FirebaseFirestore.instance
         .collection(UserDao.colName)
         .doc('Ajd6QYvkVLeZ3DZSL9mqqvOcVCA2')
@@ -129,23 +127,20 @@ class TacheDao {
         .update(occupation);
   }
 
-  static Future<void> changeTermin(String uid, String idT) async {
+   static Future<void> changeTermin(String uid, String idT) async {
     Map<String, dynamic> terminer = {"terminer": false};
-
+    
     await FirebaseFirestore.instance
         .collection(UserDao.colName)
         .doc(uid)
         .collection(TacheDao.colName)
         .doc(idT)
         .update(terminer);
+        
   }
 
 //delete
-<<<<<<< HEAD
 static Future<void> supprimerTache(String uid, String idT,String idP) async {
-=======
-  static Future<void> supprimerTache(String uid, String idT) async {
->>>>>>> 075a867e624632318e2c418510ca5eaa8fff53dc
     await FirebaseFirestore.instance
         .collection(UserDao.colName)
         .doc(uid)
@@ -157,12 +152,9 @@ static Future<void> supprimerTache(String uid, String idT,String idP) async {
      
   }
 
+
   static String get idP {
-    return FirebaseFirestore.instance
-        .collection(UserDao.colName)
-        .doc(Auth.uid)
-        .collection(ProjectDao.colName)
-        .id;
+    return FirebaseFirestore.instance.collection(UserDao.colName).doc(Auth.uid).collection(ProjectDao.colName).id;
   }
 
   // static Future<Tache> getUserTache1(String uid, String idT) async {
@@ -184,9 +176,8 @@ static Future<void> supprimerTache(String uid, String idT,String idP) async {
   //    FirebaseFirestore.instance.collectionGroup("tache").where('id' ,isEqualTo: false ).where('iscanceled' ,isEqualTo: idT ).get();
   //  }
 
-  static Future<List<Tache>> getTache(String idT) async {
+   static Future<List<Tache>> getTache(String idT) async {
     QuerySnapshot query;
-<<<<<<< HEAD
     
        query = await  FirebaseFirestore.instance.collectionGroup("tache").where('id',isEqualTo: idT).get();
     
@@ -195,32 +186,16 @@ static Future<void> supprimerTache(String uid, String idT,String idP) async {
        return Tache.fromQueryDocumentSnapshot(e);
      }).toList();
   }
-=======
->>>>>>> 075a867e624632318e2c418510ca5eaa8fff53dc
 
-    query = await FirebaseFirestore.instance
-        .collectionGroup("tache")
-        .where('id', isEqualTo: idT)
-        .get();
 
-    return query.docs.map((e) {
-      return Tache.fromQueryDocumentSnapshot(e);
-    }).toList();
-  }
+ static Tache getUserTache2(String uid, String idT) {
+     var list;
+   list= getTache(idT);
 
-<<<<<<< HEAD
     return list[0];
     
-=======
-  static Tache getUserTache2(String uid, String idT) {
-    var list;
-    list = getTache(idT);
->>>>>>> 075a867e624632318e2c418510ca5eaa8fff53dc
 
-    return list[0];
-  }
 }
-<<<<<<< HEAD
 static Future<void> Aff(String idT) async {
  //   QuerySnapshot query;
     
@@ -247,5 +222,3 @@ static Future<void> Aff(String idT) async {
   }
       
 }
-=======
->>>>>>> 075a867e624632318e2c418510ca5eaa8fff53dc
