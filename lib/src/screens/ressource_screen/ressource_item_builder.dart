@@ -70,13 +70,8 @@ Dismissible(
           ),
         ],
       );
-      }     
- );
-
-
+      });
     }
-
-
     else{
       print("modifier");
     }

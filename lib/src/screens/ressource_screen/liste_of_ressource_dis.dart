@@ -30,8 +30,12 @@ class ListRessource extends StatelessWidget {
         builder: (context, snapshot) {
           if(snapshot.hasData){
             if(snapshot.data!.isEmpty) return Center( child: Text('pas de Ressource '),);
-             return ListView.builder(
+             return 
+            
+
+             ListView.builder(
             itemCount: snapshot.data!.length,
+<<<<<<< HEAD
             itemBuilder: (context,index)=>   ListTile(
                                title: Text(snapshot.data![index].nom)  ,
                           onTap: ()  async {
@@ -39,6 +43,33 @@ class ListRessource extends StatelessWidget {
                                   TacheDao.addResID(Auth.uid,  tache.id,project.id,snapshot.data![index].id);
                                   ResourceDao.ResourceAuccupe(snapshot.data![index].id);
                                   
+=======
+            itemBuilder: (context,index)=>  
+            
+
+             Dismissible(
+               key:ObjectKey(snapshot.data![index].id),
+      background: Container(
+        alignment: Alignment.centerLeft,
+        padding: EdgeInsets.only(left: 20.0),
+        color: Colors.orangeAccent,
+        child: Icon(Icons.edit, color: Colors.white),
+      ),
+      secondaryBackground: Container(
+        alignment: Alignment.centerRight,
+        padding: EdgeInsets.only(right: 20.0),
+        color: Colors.redAccent,
+        child: Icon(Icons.delete, color: Colors.white),
+      ),
+      child:
+            ListTile(
+                   title: Text(snapshot.data![index].nom)  ,
+                    onTap: ()  async {
+                      ResourceDao.ResourceAuccupe(snapshot.data![index].id);
+                                  Tache t = await TacheDao.getUserTache(Auth.uid, tache.id);
+                                  TacheDao.changeEtat(Auth.uid,  tache.id);
+                                  TacheDao.SaveTacheOfRe(snapshot.data![index].id,t);
+>>>>>>> 075a867e624632318e2c418510ca5eaa8fff53dc
                                   showDialog(
                                     context: context,
                                     builder: (context) => AlertDialog(
@@ -57,7 +88,46 @@ class ListRessource extends StatelessWidget {
                                   
                           //  ontap(project: project,selectedScreen:ListTache.screenName);
                           },
-                        ));
+                        ),
+                          onDismissed: (direction) {
+        // if (direction == DismissDirection.startToEnd) {
+        // //  print(project.id);
+        // } else if (direction == DismissDirection.endToStart) {
+        //   //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Swipe to right")));
+        //   // print(project.id);
+        //   // print("supprimer");
+        //   // ProjectDao.deleteP(project.id, Auth.uid);
+        // }
+      },
+      confirmDismiss: (direction) async {
+        if (direction == DismissDirection.endToStart) {
+          return await showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text("Confirm"),
+                  content:
+                      const Text("Are you sure you wish to delete this item?"),
+                  actions: <Widget>[
+                    FlatButton(
+                        onPressed: () => Navigator.of(context).pop(true),
+                        child: const Text("DELETE")),
+                    FlatButton(
+                      onPressed: () => Navigator.of(context).pop(false),
+                      child: const Text("CANCEL"),
+                    ),
+                  ],
+                );
+              });
+        } else {
+          onTap:
+          {
+            //ontap(project: project, selectedScreen: updateProjet.screenName);
+          }
+        }
+      },
+             )
+                        );
           
           
           

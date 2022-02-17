@@ -28,148 +28,149 @@ class AddTache extends StatelessWidget {
       : super(key: key);
 
   TextEditingController _title = TextEditingController(text: "");
-   int duree= 1 ;
+  int duree = 1;
   late String titre;
-   String btnText = 'Ajouter tache';
+  String btnText = 'Ajouter tache';
 
   final _formKey = GlobalKey<FormState>();
 
-  
-
   @override
   Widget build(BuildContext context) {
-  
-   return Scaffold(
-        appBar: AppBar(
-            title: Text('Ajouter une Tache'),
-            // to return to  ListProject screen
-            // leading: IconButton(onPressed: ()=> changeScreen(selectedScreen:ListTache.screenName),icon: Icon(Icons.arrow_back)),
-            leading: IconButton(
-                onPressed: () => Auth.loguOut(), icon: Icon(Icons.arrow_back))
-            // backgroundColor: Colors.blue,
-            ),
-        body: GestureDetector(
-          onTap: () {},
-          child: SingleChildScrollView(
-            child: SafeArea(
-              child: Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 20.0,
-                  vertical: 10.0,
-                ),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    SizedBox(
-                      height: 20,
-                    ),
-                    // Center(
-                    //   child: Text(
-                    //     titleText,
-                    //     style: TextStyle(
-                    //       color: Colors.lightBlueAccent.shade200,
-                    //       fontSize: 20.0,
-                    //       fontWeight: FontWeight.bold,
-                    //     ),
-                    //   ),
-                    // ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
+    return Scaffold(
+      appBar: AppBar(
+          title: Text('Ajouter une Tache'),
+          // to return to  ListProject screen
+          // leading: IconButton(onPressed: ()=> changeScreen(selectedScreen:ListTache.screenName),icon: Icon(Icons.arrow_back)),
+          leading: IconButton(
+              onPressed: () => Auth.loguOut(), icon: Icon(Icons.arrow_back))
+          // backgroundColor: Colors.blue,
+          ),
+      body: GestureDetector(
+        onTap: () {},
+        child: SingleChildScrollView(
+          child: SafeArea(
+            child: Container(
+              padding: EdgeInsets.symmetric(
+                horizontal: 20.0,
+                vertical: 10.0,
+              ),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  SizedBox(
+                    height: 20,
+                  ),
+                  // Center(
+                  //   child: Text(
+                  //     titleText,
+                  //     style: TextStyle(
+                  //       color: Colors.lightBlueAccent.shade200,
+                  //       fontSize: 20.0,
+                  //       fontWeight: FontWeight.bold,
+                  //     ),
+                  //   ),
+                  // ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
 
                   Form(
-      key: _formKey,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          TextFormField(
+                    key: _formKey,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        TextFormField(
 
-              // The validator receives the text that the user has entered.
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
+                            // The validator receives the text that the user has entered.
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
 
-                titre = value;
-              },
-              // decoration: const InputDecoration(
-              //   border: OutlineInputBorder(),
-              //   labelText: 'Title',
-              //   hintText: 'Entrer Title',
-              // )),
-
-              decoration: const InputDecoration(
-                labelText: 'nom',
-                hintText: 'Entrer Title',
-                labelStyle: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.white,
-                ),
-              )),
-          TextFormField(
-              keyboardType: TextInputType.number,
-
-              // The validator receives the text that the user has entered.
-              validator: (value) {
-                if (value == null || value.isEmpty) {
-                  return 'Please enter some text';
-                }
-
-                duree = int.parse(value);
-              },
-              // decoration: const InputDecoration(
-              //   border: OutlineInputBorder(),
-              //   labelText: 'duree',
-              //   hintText: 'Entrer la duree',
-              // )
-              // ),
-
-              decoration: const InputDecoration(
-                labelText: 'duree',
-                hintText: 'Entrer la duree',
-                labelStyle: TextStyle(
-                  fontSize: 18.0,
-                  color: Colors.white,
-                ),
-              )),
-          Padding(
-            padding: const EdgeInsets.symmetric(vertical: 16.0),
-            child: ElevatedButton(
-              onPressed: () {
-                // Validate returns true if the form is valid, or false otherwise.
-                if (_formKey.currentState!.validate()) {
-                  Tache t = Tache(duree: duree, titre: titre,occupation:false,teminer: false);
-
-                TacheDao.SaveTache(Auth.uid,project.id , t);
-
-                  showDialog(
-                    context: context,
-                    builder: (context) => AlertDialog(
-                      title: Text('Result'),
-                      content: Text('Ajout avec succes'),
-                      actions: [
-                        ElevatedButton(
-                            onPressed: () {
-                              Navigator.pop(context);
+                              titre = value;
                             },
-                            child: Text('Ok'))
+                            // decoration: const InputDecoration(
+                            //   border: OutlineInputBorder(),
+                            //   labelText: 'Title',
+                            //   hintText: 'Entrer Title',
+                            // )),
+
+                            decoration: const InputDecoration(
+                              labelText: 'nom',
+                              hintText: 'Entrer Title',
+                              labelStyle: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.white,
+                              ),
+                            )),
+                        TextFormField(
+                            keyboardType: TextInputType.number,
+
+                            // The validator receives the text that the user has entered.
+                            validator: (value) {
+                              if (value == null || value.isEmpty) {
+                                return 'Please enter some text';
+                              }
+
+                              duree = int.parse(value);
+                            },
+                            // decoration: const InputDecoration(
+                            //   border: OutlineInputBorder(),
+                            //   labelText: 'duree',
+                            //   hintText: 'Entrer la duree',
+                            // )
+                            // ),
+
+                            decoration: const InputDecoration(
+                              labelText: 'duree',
+                              hintText: 'Entrer la duree',
+                              labelStyle: TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.white,
+                              ),
+                            )),
+                        Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 16.0),
+                          child: ElevatedButton(
+                            onPressed: () {
+                              // Validate returns true if the form is valid, or false otherwise.
+                              if (_formKey.currentState!.validate()) {
+                                Tache t = Tache(
+                                    duree: duree,
+                                    titre: titre,
+                                    occupation: false,
+                                    teminer: false);
+
+                                TacheDao.SaveTache(Auth.uid, project.id, t);
+
+                                showDialog(
+                                  context: context,
+                                  builder: (context) => AlertDialog(
+                                    title: Text('Result'),
+                                    content: Text('Ajout avec succes'),
+                                    actions: [
+                                      ElevatedButton(
+                                          onPressed: () {
+                                            Navigator.pop(context);
+                                          },
+                                          child: Text('Ok'))
+                                    ],
+                                  ),
+                                );
+                              }
+                            },
+                            child: const Text('Ajouter'),
+                          ),
+                        ),
                       ],
                     ),
-                  );
-                }
-              },
-              child: const Text('Ajouter'),
-            ),
-          ),
-        ],
-      ),
-    ),
-                  ],
-                ),
+                  ),
+                ],
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
   }
 }
