@@ -47,13 +47,10 @@ class TacheDao {
         .collection(colName)
         .doc(idT)
         .get();
-<<<<<<< HEAD
 
-=======
-        // Query<Map<String, dynamic>> doc = await FirebaseFirestore.instance
-        // .collectionGroup("tache").where('id',isEqualTo: idT);
-        
->>>>>>> 96d4587e511545c9a28b59e6ef3ab25c1c273942
+    // Query<Map<String, dynamic>> doc = await FirebaseFirestore.instance
+    // .collectionGroup("tache").where('id',isEqualTo: idT);
+
     return Tache.fromDocumentSnapshot(doc);
   }
   ///////////////////////////////////////////////////
@@ -152,18 +149,6 @@ class TacheDao {
         .id;
   }
 
-  static Future<void> UpdateTache(
-      String uid, Tache tache, String idT) async {
-    FirebaseFirestore.instance
-        .collection(UserDao.colName)
-        .doc(uid)
-        .collection(ProjectDao.colName)
-        .doc(idP)
-        .collection(TacheDao.colName)
-        .doc(idT)
-        .update(tache.asMap());
-  }
-
   // static Future<Tache> getUserTache1(String uid, String idT) async {
   //   // DocumentSnapshot doc = await FirebaseFirestore.instance
   //   //     .collection(UserDao.colName)
@@ -183,24 +168,23 @@ class TacheDao {
   //    FirebaseFirestore.instance.collectionGroup("tache").where('id' ,isEqualTo: false ).where('iscanceled' ,isEqualTo: idT ).get();
   //  }
 
-   static Future<List<Tache>> getTache(String idT) async {
+  static Future<List<Tache>> getTache(String idT) async {
     QuerySnapshot query;
-    
-       query = await  FirebaseFirestore.instance.collectionGroup("tache").where('id',isEqualTo: idT).get();
-    
-    
-    
-     return query.docs.map((e){
-       return Tache.fromQueryDocumentSnapshot(e);
-     }).toList();
+
+    query = await FirebaseFirestore.instance
+        .collectionGroup("tache")
+        .where('id', isEqualTo: idT)
+        .get();
+
+    return query.docs.map((e) {
+      return Tache.fromQueryDocumentSnapshot(e);
+    }).toList();
   }
 
-
- static Tache getUserTache2(String uid, String idT) {
-     var list;
-   list= getTache(idT);
+  static Tache getUserTache2(String uid, String idT) {
+    var list;
+    list = getTache(idT);
 
     return list[0];
-
-}
+  }
 }
