@@ -6,100 +6,79 @@ import 'package:projects3/src/daos/auth.dart';
 import 'package:projects3/src/daos/resourceDao.dart';
 import 'package:projects3/src/models/resource.dart';
 import 'package:projects3/src/daos/auth.dart';
+// import 'package:projects3/src/screens/tache_screen/Update_Tache.dart';
 
 class tachetemBuilder extends StatelessWidget {
   //static const String screenName = 'listRessource';
-  
+
   Tache tache;
   Function ontap;
-  tachetemBuilder({ Key? key , required this.tache,required this.ontap }) : super(key: key);
+  tachetemBuilder({Key? key, required this.tache, required this.ontap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return 
-    Dismissible(
-  key: ObjectKey(tache.id),
-    background: Container(
-      alignment: Alignment.centerLeft,
-      padding: EdgeInsets.only(left: 20.0),
-      color: Colors.orangeAccent,
-      child: Icon(Icons.edit, color: Colors.white),
-    ),
-    secondaryBackground: Container(
-      alignment: Alignment.centerRight,
-      padding: EdgeInsets.only(right: 20.0),
-      color: Colors.redAccent,
-      child: Icon(Icons.delete, color: Colors.white),
-    ),
-    child:
-    
-    
-    
-    
-    
-    
-    
-    ListTile(
-      title: Text(tache.titre)  ,
-      subtitle: Text(
-        "duree: ${tache.duree.toString()}"
-        ),
-        
-      onTap: (){  
-         ontap(tache: tache,selectedScreen:ListRessource.screenName); 
-         
-          },//end onTap
-    ),
+    return Dismissible(
+      key: ObjectKey(tache.id),
+      background: Container(
+        alignment: Alignment.centerLeft,
+        padding: EdgeInsets.only(left: 20.0),
+        color: Colors.orangeAccent,
+        child: Icon(Icons.edit, color: Colors.white),
+      ),
+      secondaryBackground: Container(
+        alignment: Alignment.centerRight,
+        padding: EdgeInsets.only(right: 20.0),
+        color: Colors.redAccent,
+        child: Icon(Icons.delete, color: Colors.white),
+      ),
+      child: ListTile(
+        title: Text(tache.titre),
+        subtitle: Text("duree: ${tache.duree.toString()}"),
 
-    
-onDismissed: (direction){
-      if(direction == DismissDirection.startToEnd){
-        print(tache.id);
-        
-        
-      } else if(direction == DismissDirection.endToStart){
-        //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Swipe to right")));
-        print(tache.id);
-        print("supprimer");
-        TacheDao.supprimerTache(Auth.uid,tache.id);
-        //ResourceDao.deleteRe(tache.id);
-      }
-    },
-
-    confirmDismiss: (direction) async {
-      if(direction==DismissDirection.endToStart){
- return await showDialog(
-    context: context,
-    builder: (BuildContext context) {
-      return AlertDialog(
-        title: const Text("Confirm"),
-        content: const Text("Are you sure you wish to delete this item?"),
-        actions: <Widget>[
-          FlatButton(
-            onPressed: () => Navigator.of(context).pop(true),
-            
-            child: const Text("DELETE")
-          ),
-          FlatButton(
-            onPressed: () => Navigator.of(context).pop(false),
-            child: const Text("CANCEL"),
-          ),
-        ],
-      );
-      }     
- );
-
-
-    }
-
-
-    else{
-      print("modifier");
-    }
-  
-  
-},
-  );
+        onTap: () {
+          ontap(tache: tache, selectedScreen: ListRessource.screenName);
+        }, //end onTap
+      ),
+      onDismissed: (direction) {
+        if (direction == DismissDirection.startToEnd) {
+          print(tache.id);
+        } else if (direction == DismissDirection.endToStart) {
+          //Scaffold.of(context).showSnackBar(SnackBar(content: Text("Swipe to right")));
+          print(tache.id);
+          print("supprimer");
+          TacheDao.supprimerTache(Auth.uid, tache.id);
+          //ResourceDao.deleteRe(tache.id);
+        }
+      },
+      confirmDismiss: (direction) async {
+        if (direction == DismissDirection.endToStart) {
+          return await showDialog(
+              context: context,
+              builder: (BuildContext context) {
+                return AlertDialog(
+                  title: const Text("Confirm"),
+                  content:
+                      const Text("Are you sure you wish to delete this item?"),
+                  actions: <Widget>[
+                    FlatButton(
+                        onPressed: () => Navigator.of(context).pop(true),
+                        child: const Text("DELETE")),
+                    FlatButton(
+                      onPressed: () => Navigator.of(context).pop(false),
+                      child: const Text("CANCEL"),
+                    ),
+                  ],
+                );
+              });
+        } else {
+          onTap:
+          {
+            // ontap(tache: tache, selectedScreen: UpdateTache.screenName);
+          }
+        }
+      },
+    );
   }
 }
 // Scaffold(

@@ -41,15 +41,16 @@ class TacheDao {
     DocumentSnapshot doc = await FirebaseFirestore.instance
         .collection(UserDao.colName)
         .doc(uid)
-        .collection(ProjectDao.colName).doc('Gmr2q29eBAXeUwRpYdeB')
+        .collection(ProjectDao.colName)
+        .doc('Gmr2q29eBAXeUwRpYdeB')
         .collection(colName)
         .doc(idT)
         .get();
-        
+
     return Tache.fromDocumentSnapshot(doc);
   }
   ///////////////////////////////////////////////////
-  
+
   //////////////////////////////////////////////////
 
   static Future<List<Tache>> getResourceTache(String uid) async {
@@ -82,7 +83,7 @@ class TacheDao {
   }
 
   //Get tache terminer
-   static Future<List<Tache>> getUserTacheTerminer() async {
+  static Future<List<Tache>> getUserTacheTerminer() async {
     QuerySnapshot query = await FirebaseFirestore.instance
         .collection(UserDao.colName)
         .doc('Ajd6QYvkVLeZ3DZSL9mqqvOcVCA2')
@@ -113,20 +114,19 @@ class TacheDao {
         .update(occupation);
   }
 
-   static Future<void> changeTermin(String uid, String idT) async {
+  static Future<void> changeTermin(String uid, String idT) async {
     Map<String, dynamic> terminer = {"terminer": false};
-    
+
     await FirebaseFirestore.instance
         .collection(UserDao.colName)
         .doc(uid)
         .collection(TacheDao.colName)
         .doc(idT)
         .update(terminer);
-        
   }
 
 //delete
-static Future<void> supprimerTache(String uid, String idT) async {
+  static Future<void> supprimerTache(String uid, String idT) async {
     await FirebaseFirestore.instance
         .collection(UserDao.colName)
         .doc(uid)
@@ -137,8 +137,23 @@ static Future<void> supprimerTache(String uid, String idT) async {
         .delete();
   }
 
-
   static String get idP {
-    return FirebaseFirestore.instance.collection(UserDao.colName).doc(Auth.uid).collection(ProjectDao.colName).id;
+    return FirebaseFirestore.instance
+        .collection(UserDao.colName)
+        .doc(Auth.uid)
+        .collection(ProjectDao.colName)
+        .id;
+  }
+
+  static Future<void> UpdateTache(
+      String uid, Tache tache, String idT) async {
+    FirebaseFirestore.instance
+        .collection(UserDao.colName)
+        .doc(uid)
+        .collection(ProjectDao.colName)
+        .doc(idP)
+        .collection(TacheDao.colName)
+        .doc(idT)
+        .update(tache.asMap());
   }
 }
